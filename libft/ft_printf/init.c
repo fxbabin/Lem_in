@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/12/01 14:48:29 by fbabin            #+#    #+#             */
+/*   Updated: 2017/12/01 19:06:40 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "ft_printf.h"
 
-int		main(int argc, char **argv)
+t_printf		*ft_plst_init(void)
 {
-	char	*line;
+	t_printf	*t;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	return (0);
+	if ((t = (t_printf*)malloc(sizeof(t_printf))) == NULL)
+		return (NULL);
+	ft_bzero(t, sizeof(t_printf));
+	return (t);
 }

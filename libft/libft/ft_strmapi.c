@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:20:16 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:20:23 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*line;
+	unsigned int	i;
+	char			*out;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	return (0);
+	if (!s || !f)
+		return (NULL);
+	i = -1;
+	if (!(out = ft_strnew(ft_strlen(s))))
+		return (NULL);
+	while (s && s[++i])
+		out[i] = f(i, s[i]);
+	out[i] = '\0';
+	return (out);
 }

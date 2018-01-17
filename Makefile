@@ -6,14 +6,14 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/16 23:19:01 by fbabin           ###   ########.fr        #
+#    Updated: 2018/01/17 17:11:35 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LEM_IN			= lem-in
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra
 
 _SRCS			=	lem_in.c \
 

@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstdump.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:53:28 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 16:13:16 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void		ft_lstdump(t_list **list)
 {
-	char	*line;
+	t_list		*l;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (!list || !*list)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		ft_putstr("(null)\n");
+		return ;
 	}
-	free(line);
-	return (0);
+	l = *list;
+	while ((*list))
+	{
+		if ((*list)->content)
+			ft_putstr((char*)(*list)->content);
+		else
+			ft_putstr(" (null) ");
+		ft_putstr(" -> ");
+		*list = (*list)->next;
+	}
+	ft_putstr(" NULL\n");
+	*list = l;
 }

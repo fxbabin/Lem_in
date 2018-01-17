@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:24:56 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:25:00 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*line;
+	int		len;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	len = ft_strlen(s);
+	if (*(s + len) == (char)c)
+		return ((char*)s + len);
+	while (len--)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		if (*(s + len) == (unsigned char)c)
+			return ((char*)s + len);
 	}
-	free(line);
-	return (0);
+	return (NULL);
 }

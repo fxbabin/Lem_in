@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:40:34 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 15:27:42 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+t_list		*ft_lstatpos(t_list *begin_list, unsigned int nbr)
 {
-	char	*line;
+	unsigned int		i;
+	t_list				*tmp;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	i = -1;
+	if (!begin_list)
+		return (begin_list);
+	tmp = begin_list;
+	while (++i < nbr)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		if (tmp == NULL)
+			return (NULL);
+		tmp = tmp->next;
 	}
-	free(line);
-	return (0);
+	return (tmp);
 }

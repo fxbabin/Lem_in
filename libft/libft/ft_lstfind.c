@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:55:24 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 19:53:20 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+t_list		*ft_lstfind(t_list *begin_list, void *data_ref, int (*cmp)())
 {
-	char	*line;
+	t_list		*tmp;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (!begin_list || !data_ref || !cmp)
+		return (begin_list);
+	tmp = begin_list;
+	while (tmp)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		if ((*cmp)(tmp->content, data_ref) == 0)
+			return (tmp);
+		tmp = tmp->next;
 	}
-	free(line);
-	return (0);
+	return (tmp);
 }

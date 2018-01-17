@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:05:40 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:05:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char	*line;
+	unsigned char	*tmp;
+	const char		*s;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	tmp = (unsigned char*)dst;
+	s = (const char*)src;
+	while (n--)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		*(tmp++) = *(s++);
+		if (*(tmp - 1) == (unsigned char)c)
+			return ((void*)tmp);
 	}
-	free(line);
-	return (0);
+	return (NULL);
 }

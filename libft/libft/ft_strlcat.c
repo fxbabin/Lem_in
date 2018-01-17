@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:19:34 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:19:38 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+size_t	ft_strlcat(char *s1, const char *s2, size_t size)
 {
-	char	*line;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	return (0);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	if (size <= s1_len)
+		return (s2_len + size);
+	i = s1_len;
+	while (*s2 && i < (size - 1))
+		s1[i++] = *(s2++);
+	s1[i] = '\0';
+	return (s1_len + s2_len);
 }

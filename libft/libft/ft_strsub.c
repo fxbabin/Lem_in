@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:26:11 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:26:17 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*line;
+	char	*out;
+	char	*tmp;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	return (0);
+	if (!s)
+		return (NULL);
+	if (!(out = ft_strnew(len)))
+		return (NULL);
+	tmp = out;
+	while (len-- && *(s + start))
+		*(out++) = *(s++ + start);
+	return (tmp);
 }

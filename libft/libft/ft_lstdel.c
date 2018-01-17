@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:52:40 by fbabin            #+#    #+#             */
+/*   Updated: 2018/01/10 15:20:28 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_elemdel(void *content, size_t content_size)
 {
-	char	*line;
+	(void)content_size;
+	free(content);
+	content = NULL;
+}
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+{
+	t_list		*tmp;
+
+	if (!alst || !del)
+		return ;
+	while (*alst)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		tmp = (*alst)->next;
+		del((*alst)->content, (*alst)->content_size);
+		free(*alst);
+		*alst = NULL;
+		*alst = tmp;
 	}
-	free(line);
-	return (0);
 }

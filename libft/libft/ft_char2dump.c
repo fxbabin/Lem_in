@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_char2dump.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:28:30 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 20:18:31 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_char2dump(char **array)
 {
-	char	*line;
+	int		i;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	i = -1;
+	if (!array || !*array)
+		return ;
+	while (array[++i])
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		ft_putstr("[");
+		ft_putstr(array[i]);
+		ft_putstr("] ");
 	}
-	free(line);
-	return (0);
+	ft_putstr("\n");
 }

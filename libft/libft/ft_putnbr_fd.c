@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:12:34 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:13:10 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	char	*line;
-
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (nb < 0)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		ft_putchar_fd('-', fd);
+		nb *= -1;
 	}
-	free(line);
-	return (0);
+	if (nb == -2147483648)
+		ft_putstr_fd("2147483648", fd);
+	if (nb >= 10)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
+	}
+	if (nb < 10 && nb >= 0)
+		ft_putchar_fd(nb + 48, fd);
 }

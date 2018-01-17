@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:25:56 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:26:01 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	char	*line;
+	int		i;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (!*s2)
+		return ((char*)s1);
+	while (*s1)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		i = 0;
+		while (s1[i] && s2[i] && s1[i] == s2[i])
+			i++;
+		if (s2[i] == '\0')
+			return ((char*)s1);
+		s1++;
 	}
-	free(line);
-	return (0);
+	return (NULL);
 }

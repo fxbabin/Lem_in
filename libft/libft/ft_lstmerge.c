@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstmerge.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:57:18 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 16:10:52 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_lstmerge(t_list **begin_list1, t_list *begin_list2)
 {
-	char	*line;
+	t_list		*tmp;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (!begin_list1 || !begin_list2)
+		return ;
+	tmp = *begin_list1;
+	if (!tmp)
+		tmp = begin_list2;
+	else
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = begin_list2;
 	}
-	free(line);
-	return (0);
 }

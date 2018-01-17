@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strmjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/12/18 18:47:33 by fbabin            #+#    #+#             */
+/*   Updated: 2017/12/18 19:02:20 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char			*ft_strmjoin(char *s1, const char *s2, int len1, int len2)
 {
-	char	*line;
+	char	*new;
+	int		i;
+	int		y;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
-	{
-		ft_printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	return (0);
+	if (!(new = ft_strnew(len1 + len2)))
+		return (NULL);
+	i = -1;
+	while (++i < len1)
+		new[i] = s1[i];
+	y = -1;
+	while (++y < len2)
+		new[i++] = s2[y];
+	free(s1);
+	return (new);
 }

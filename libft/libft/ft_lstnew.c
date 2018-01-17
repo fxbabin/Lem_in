@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:57:48 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 21:57:54 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	char	*line;
+	t_list	*t;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if ((t = (t_list*)malloc(sizeof(t_list))) == NULL)
+		return (NULL);
+	if (content)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		t->content = ft_memalloc(content_size);
+		ft_memcpy(t->content, content, content_size);
+		t->content_size = content_size;
 	}
-	free(line);
-	return (0);
+	else
+	{
+		t->content = NULL;
+		t->content_size = 0;
+	}
+	t->next = NULL;
+	return (t);
 }

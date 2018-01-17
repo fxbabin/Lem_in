@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/17 17:12:40 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 21:40:56 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 15:14:30 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_lstclear(t_list **begin_list)
 {
-	char	*line;
+	t_list		*tmp;
 
-	(void)argc;
-	(void)argv;
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	if (!begin_list)
+		return ;
+	while (*begin_list)
 	{
-		ft_printf("%s\n", line);
-		free(line);
+		tmp = (*begin_list)->next;
+		free(*begin_list);
+		*begin_list = tmp;
 	}
-	free(line);
-	return (0);
 }
