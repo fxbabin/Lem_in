@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/19 18:17:05 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/20 21:42:35 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,11 @@ int		ft_checkpath(char **tab)
 	return (1);
 }
 
-t_list		*get_nodebyname(t_list **t)
+/*t_list		*get_nodebyname(t_list **t)
 {
 	
 
-}
+}*/
 
 
 /*  CHECK DOUBLE ROOMS */
