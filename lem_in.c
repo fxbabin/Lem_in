@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/20 21:42:35 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/21 15:52:32 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	freechar2(char **tab)
 
 }
 
-t_node		*init_node(const char *str, int x, int y)
+t_room		*init_room(const char *str, int x, int y)
 {
-	t_node		*n;
+	t_room		*n;
 
-	if (!(n = (t_node*)malloc(1 * sizeof(t_node))))
+	if (!(n = (t_room*)malloc(1 * sizeof(t_room))))
 		return (NULL);
 	n->name = ft_strdup(str);
 	n->x = x;
@@ -36,7 +36,7 @@ t_node		*init_node(const char *str, int x, int y)
 	return (n);
 }
 
-void	dispnode(t_node *t)
+void	dispnode(t_room *t)
 {
 	ft_printf("name : %s\t; ", t->name);
 	ft_printf(" x : %d\t; ", t->x);
@@ -76,10 +76,10 @@ void		ft_lstndump(t_list **list)
   return (0);
   }*/
 /*void	treat_line(t_list **t, )
-{
-	
+  {
 
-}*/
+
+  }*/
 
 int		numelems(char **tab)
 {
@@ -125,91 +125,50 @@ int		ft_checkpath(char **tab)
 	return (1);
 }
 
-/*t_list		*get_nodebyname(t_list **t)
+int		ft_count_sep(char *line)
 {
-	
+	int		nb_sep;
+	int		i;
 
-}*/
-
-
-/*  CHECK DOUBLE ROOMS */
-
-void	get_rooms(t_list **t)
-{
-	char	*line;
-	char	**tab;
-	int		n;
-	int		b;
-
-	line = NULL;
-	(void)t;
-	//b = 0;
-	while (get_next_line(0, &line) > 0)
+	nb_sep = 0;
+	i = 0;
+	while (line[i] != '\0')
 	{
-		b = 0;
-		if (line[0] == '#')
-		{
-			if (!ft_strcmp(line, "##start"))
-			{
-				free(line);
-				get_next_line(0, &line);
-				b = 1;
-			}
-			else if (!ft_strcmp(line, "##end"))
-			{
-				free(line);
-				get_next_line(0, &line);
-				b = 2;
-			}
-			else
-			{
-				free(line);
-				get_next_line(0, &line);
-			}
-		}
-		if (ft_charinset('-', line) && !ft_charinset(' ', line)) //ft_isalnum(line[ft_strlen(line) - 1]))
-			tab = ft_split(line, "-");
-		else if (ft_charinset(' ', line)) //ft_isalnum(line[ft_strlen(line) - 1]))
-			tab = ft_split(line, " ");
-		else
-			break ;
-		ft_char2dump(tab);
-		n = numelems(tab);
-		if (n == 3)
-		{
-			if (!ft_checknode(tab))
-				break ;
-			ft_lstpushback(t, init_node(tab[0], ft_atoi(tab[1]), ft_atoi(tab[2])), b);
-		}
-		if (n == 2)
-		{
-			if (!ft_checkpath(tab))
-				break ;
-
-		}
-		/*else
-			error*/
-			//ft_lstpushback(t, init_node(tab[0],), 0);
-
-		//if (!ft_strcmp(line, "##start"))
-		//	break ;
-
-		//ft_lstdump(t);
-		//ft_char2dump(tab);
-		//freechar2(tab);
-		ft_printf("%s\n", line);
-		free(line);
+		if (line[i] == '-')
+			nb_sep++;
+		i++;
 	}
-	free(line);
+	return (nb_sep);
+}
+
+int		get_pipes(char *line, t_list **t)
+{
+	int		nb_sep;
+
+	ft_printf("%s\n", line);
+	t = NULL;
+	if ((nb_sep = ft_count_sep(line)) == 0)
+	{
+		free(line);
+		ft_printf("pas de '-', tube invalide\n");
+		return (0);
+	}
+	ft_printf("nb_sep = %d\n", nb_sep);
+	return (1);
 }
 
 int		main(void)
 {
 	t_list	*t;
+	char	*line;
 
 	t = NULL;
-	get_rooms(&t);
+	line = get_rooms(&t);
+	if (line == NULL)
+		return (ft_printf("start_programme\n"));
+	if (!(get_pipes(line, &t)))
+		return (ft_printf("start programme 2\n"));
 	//ft_lstdump(&t);
-	ft_lstndump(&t);
+	//ft_lstndump(&t);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/18 20:24:03 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/21 14:50:11 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@
 ** -------------------------------- STRUCTURES -------------------------------
 */
 
-typedef struct		s_node
+typedef struct		s_room
 {
 	const char		*name;
 	int				x;
 	int				y;
+	int				b;
 	t_list			*sup;
-}					t_node;
+}					t_room;
 
+long long			ft_atoi_check(const char *str);
+char				*get_rooms(t_list **t);
+t_room				*init_room(const char *str, int x, int y);
 /*
 ** ----------------------------------------------------------------------------
 ** ---------------------------------- SOURCES ---------------------------------

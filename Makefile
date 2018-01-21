@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/17 17:11:35 by fbabin           ###   ########.fr        #
+#    Updated: 2018/01/21 14:48:13 by arobion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra
 
 _SRCS			=	lem_in.c \
+					get_rooms.c \
+					atoi_check.c
 
 _LIBFT			=	libft.a
 HEADER_DIR		=	includes
