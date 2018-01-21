@@ -6,11 +6,12 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/21 15:52:32 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/21 17:41:32 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdio.h>
 
 void	freechar2(char **tab)
 {
@@ -125,36 +126,101 @@ int		ft_checkpath(char **tab)
 	return (1);
 }
 
-int		ft_count_sep(char *line)
+int		ft_verif_pipe_format(char *line)
 {
-	int		nb_sep;
 	int		i;
+	int		nb_sep;
 
-	nb_sep = 0;
 	i = 0;
+	nb_sep = 0;
 	while (line[i] != '\0')
 	{
+		if (!(ft_isprint(line[i])) || line[i] == ' ')
+			return (0);
 		if (line[i] == '-')
 			nb_sep++;
 		i++;
 	}
-	return (nb_sep);
+	if (nb_sep != 1)
+		return (0);
+	return (1);
+}
+
+int		ft_search_rooms_name(char *name1, char *name2, t_list **t)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	t_list	*crawler;
+
+	crawler = *t;
+	while (crawler)
+	{
+		if (ft_launch_cmp(crawler->content, name1) == 0)
+			i = 1;
+		crawler = crawler->next;
+	}
+	crawler = *t;
+	while (crawler)
+	{
+		if (ft_launch_cmp(crawler->content, name2) == 0)
+			j = 1;
+		crawler = crawler->next;
+	}
+	if (i == 1 && j == 1)
+		return (1);
+	return (0);
+}
+
+int		ft_are_rooms_exists(char *line, int i, t_list **t)
+{
+	int		j;
+	char	*name1;
+	char	*name2;
+
+	j = 0;
+	if (!(name1 = (char*)malloc(sizeof(char) * i)))
+		return (0);
+	while (j < i)
+	{
+		name1[j] = line[j];
+		j++;
+	}
+	name1[j] = '\0';
+	j = i + 1;
+	while (line[j] != '\0')
+		j++;
+	if (!(name2 = (char*)malloc(sizeof(char) * (j - i))))
+		return (0);
+	j = 0;
+	i++;
+	while (line[i] != '\0')
+	{
+		name2[j] = line[i];
+		j++;
+		i++;
+	}
+	name2[j] = '\0';
+	if (!(ft_search_rooms_name(name1, name2, t)))
+		return (0);
+	return (1);
 }
 
 int		get_pipes(char *line, t_list **t)
 {
-	int		nb_sep;
+	int		i;
 
-	ft_printf("%s\n", line);
-	t = NULL;
-	if ((nb_sep = ft_count_sep(line)) == 0)
-	{
-		free(line);
-		ft_printf("pas de '-', tube invalide\n");
+	i = 0;
+	if (!(ft_verif_pipe_format(line)))
 		return (0);
-	}
-	ft_printf("nb_sep = %d\n", nb_sep);
+	while (line[i] != '-')
+		i++;
+	if (!(ft_are_rooms_exists(line, i, t)))
+		return (0);
 	return (1);
+
 }
 
 int		main(void)
@@ -168,6 +234,7 @@ int		main(void)
 		return (ft_printf("start_programme\n"));
 	if (!(get_pipes(line, &t)))
 		return (ft_printf("start programme 2\n"));
+	ft_printf("start programme 3\n");
 	//ft_lstdump(&t);
 	//ft_lstndump(&t);
 	return (0);

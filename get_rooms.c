@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/21 15:36:03 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/21 17:41:35 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_verif_room_validity(char **room)
 		return (0);
 	while (room[i][j] != '\0')
 	{
-		if (!(ft_isprint(room[i][j])))
+		if (!(ft_isprint(room[i][j])) || room[i][j] == '-')
 			return (0);
 		j++;
 	}
@@ -160,8 +160,7 @@ char	*get_rooms(t_list **t)
 		{
 			ft_printf("%s\n", line);
 			ft_printf("validite invalide\n\n");
-			free(line);
-			return NULL;
+			return (line);
 		}
 		if (!(ft_verif_room_is_uniq(room, t)))
 		{
