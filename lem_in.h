@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/21 17:37:55 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 12:20:17 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ typedef struct		s_room
 	int				y;
 	int				b;
 	t_list			*sup;
+	t_list			*pipes;
 }					t_room;
 
-typedef struct		s_pipes
-{
-	char	*name;
-	t_room	*memory_adress;
-}					t_pipes;
-
+int					ft_verif_line_is_comm(char *line);
 int					ft_launch_cmp(t_room *crawler, const char *name);
 long long			ft_atoi_check(const char *str);
 char				*get_rooms(t_list **t);
