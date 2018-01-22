@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/22 13:59:25 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 17:44:26 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	**ft_verif_room_format(char *line)
 		i++;
 	if (i == 3)
 		return (room);
+	freechar2(room);
 	return (NULL);
 }
 
@@ -156,14 +157,19 @@ char	*get_rooms(char *line, t_list **t)
 		{
 			ft_printf("%s\n", line);
 			ft_printf("validite invalide\n\n");
+			freechar2(room);
 			return (line);
 		}
 		if (!(ft_verif_room_is_uniq(room, t)))
 		{
 			ft_printf("doublon\n\n");
+			freechar2(room);
+			free(line);
 			return NULL;
 		}
 		ft_lstpushback(t, init_room(room[0], ft_atoi(room[1]), ft_atoi(room[2])), b);
+		freechar2(room);
+		free(line);
 	}
 	while (get_next_line(0, &line) > 0)
 	{
@@ -195,17 +201,26 @@ char	*get_rooms(char *line, t_list **t)
 		{
 			ft_printf("%s\n", line);
 			ft_printf("validite invalide\n\n");
+			freechar2(room);
 			return (line);
 		}
 		if (!(ft_verif_room_is_uniq(room, t)))
 		{
 			ft_printf("doublon\n\n");
+			freechar2(room);
+			free(line);
 			return NULL;
 		}
 		ft_lstpushback(t, init_room(room[0], ft_atoi(room[1]), ft_atoi(room[2])), b);
 		ft_printf("%s\n", line);
 		ft_printf("c'est valide\n\n");
-		/*
+		freechar2(room);
+		free(line);
+	}
+	return (line);
+}
+
+/*
 		   if (ft_charinset('-', line) && !ft_charinset(' ', line)) //ft_isalnum(line[ft_strlen(line) - 1]))
 		   tab = ft_split(line, "-");
 		   else if (ft_charinset(' ', line)) //ft_isalnum(line[ft_strlen(line) - 1]))
@@ -236,7 +251,4 @@ char	*get_rooms(char *line, t_list **t)
 		//ft_char2dump(tab);
 		//freechar2(tab);
 		//	ft_printf("%s\n", line);
-		free(line);
-	}
-	return (line);
-}
+

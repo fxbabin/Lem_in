@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:33:11 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/22 13:45:21 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 18:12:29 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int		ft_are_rooms_exists(char *line, int i, t_list **t)
 	char	*name2;
 
 	j = 0;
-	if (!(name1 = (char*)malloc(sizeof(char) * i)))
+	if (!(name1 = (char*)malloc(sizeof(char) * i + 1)))
 		return (0);
 	while (j < i)
 	{
@@ -134,7 +134,12 @@ int		ft_are_rooms_exists(char *line, int i, t_list **t)
 	}
 	name2[j] = '\0';
 	if (!(ft_search_rooms_name(name1, name2, t)))
+	{
+		write(1, "ici\n", 4);
 		return (0);
+	}
+	//free(name1);
+	free(name2);
 	return (1);
 }
 
@@ -149,18 +154,27 @@ int		get_pipes(char *line, t_list **t)
 		i++;
 	if (!(ft_are_rooms_exists(line, i, t)))
 		return (0);
+	free(line);
 	while (get_next_line(0, &line) > 0)
 	{
 		i = 0;
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;
 		if (!(ft_verif_pipe_format(line)))
+		{
+			free(line);
 			return (0);
+		}
 		while (line[i] != '-')
 			i++;
 		if (!(ft_are_rooms_exists(line, i, t)))
+		{
+			free(line);
 			return (0);
+		}
 		ft_printf("line = %s\n", line);
+		free(line);
 	}
+	free(line);
 	return (1);
 }

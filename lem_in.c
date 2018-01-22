@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 13:56:50 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 18:27:34 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,63 @@ char	*get_ants(int *ants)
 		if ((tmp = ft_is_ants(line)) == 0)
 			return (line);
 		*ants = tmp;
+		if (*ants > 0)
+		{
+			free(line);
+			get_next_line(0, &line);
+			return (line);
+		}
 	}
 	return (NULL);
+}
+
+void	ft_eldel(void *content, size_t content_size)
+{
+	(void)content;
+	(void)content_size;
+}
+
+void	ft_free_pipes(t_list **pipes)
+{
+	t_list *tmp;
+	t_list *tmp2;
+
+	tmp = *pipes;
+	if (!tmp)
+		return ;
+	while (tmp->next)
+	{
+//		ft_free_test(tmp->content);
+		tmp2 = tmp->next;
+		free(tmp);
+		tmp = tmp2;
+	}
+//	ft_free_test(tmp->content);
+	free(tmp);
+}
+
+void	ft_free_rooms(t_room *room)
+{
+	ft_free_pipes(&(room->pipes));
+	free(room->sup);
+	free((void*)room->name);
+}
+
+void	ft_free_listception(t_list **t)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+
+	tmp = *t;
+	while (tmp->next)
+	{
+		ft_free_rooms(tmp->content);
+		tmp2 = tmp->next;
+		free(tmp);
+		tmp = tmp2;
+	}
+	ft_free_rooms(tmp->content);
+	free(tmp);
 }
 
 int		main(void)
@@ -183,6 +238,7 @@ int		main(void)
 	if (!(get_pipes(line, &t)))
 		return (ft_printf("start programme 2\n"));
 	ft_printf("start programme 3\n");
+	ft_free_listception(&t);
 	//ft_lstdump(&t);
 //	ft_lstndump(&t);
 	return (0);
