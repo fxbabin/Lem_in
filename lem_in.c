@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 18:27:34 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 20:39:32 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	freechar2(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
-
 }
 
 t_room		*init_room(const char *str, int x, int y)
@@ -61,26 +60,11 @@ void		ft_lstndump(t_list **list)
 			dispnode((*list)->content);
 		else
 			ft_putstr(" (null) ");
-		//ft_putstr(";\tcs[");
-		//ft_putnbr((*list)->content_size);
-		//ft_putstr("]\t");
-		//ft_putstr(" -> ");
 		*list = (*list)->next;
 	}
 	ft_putstr("NULL\n");
 	*list = l;
 }
-/*int		is_comment(const char *line)
-  {
-  if (ft_strcmp(line, "##end") && *line == '#')
-  return (1);
-  return (0);
-  }*/
-/*void	treat_line(t_list **t, )
-  {
-
-
-  }*/
 
 int		numelems(char **tab)
 {
@@ -158,7 +142,10 @@ char	*get_ants(int *ants)
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;
 		if ((tmp = ft_is_ants(line)) == 0)
+		{
+			ft_printf("ici\n");
 			return (line);
+		}
 		*ants = tmp;
 		if (*ants > 0)
 		{
@@ -166,7 +153,9 @@ char	*get_ants(int *ants)
 			get_next_line(0, &line);
 			return (line);
 		}
+		free(line);
 	}
+	free(line);
 	return (NULL);
 }
 
@@ -186,12 +175,10 @@ void	ft_free_pipes(t_list **pipes)
 		return ;
 	while (tmp->next)
 	{
-//		ft_free_test(tmp->content);
 		tmp2 = tmp->next;
 		free(tmp);
 		tmp = tmp2;
 	}
-//	ft_free_test(tmp->content);
 	free(tmp);
 }
 
@@ -231,15 +218,17 @@ int		main(void)
 	if(!(line = get_ants(&nb_ants)))
 		return (ft_printf("probleme sur les fourmis\n"));
 	if (nb_ants == 0)
+	{
+		free(line);
 		return (ft_printf("probleme sur les fourmis\n"));
+	}
 	line = get_rooms(line, &t);
 	if (line == NULL)
 		return (ft_printf("start_programme\n"));
 	if (!(get_pipes(line, &t)))
 		return (ft_printf("start programme 2\n"));
 	ft_printf("start programme 3\n");
-	ft_free_listception(&t);
-	//ft_lstdump(&t);
 //	ft_lstndump(&t);
+	ft_free_listception(&t);
 	return (0);
 }
