@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/21 14:48:13 by arobion          ###   ########.fr        #
+#    Updated: 2018/01/22 13:34:38 by arobion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS			= -Wall -Werror -Wextra
 
 _SRCS			=	lem_in.c \
 					get_rooms.c \
+					get_pipes.c \
 					atoi_check.c
 
 _LIBFT			=	libft.a
