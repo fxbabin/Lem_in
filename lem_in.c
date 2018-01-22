@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 13:39:35 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 13:56:50 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,58 @@ int		ft_checkpath(char **tab)
 	return (1);
 }
 
+int		ft_is_ants(char *line)
+{
+	long long	nb;
+	int			i;
+
+	i = 0;
+	nb = 0;
+	if (line[0] == '+')
+		i++;
+	while (line[i] != '\0')
+	{
+		if (ft_isdigit(line[i]) == 0)
+			return (0);
+		i++;
+	}
+	nb = ft_atoi_check(line);
+	if (nb > 2147483647)
+		return (0);
+	return ((int)nb);
+}
+
+char	*get_ants(int *ants)
+{
+	char	*line;
+	int		tmp;
+	
+	line = NULL;
+	while (get_next_line(0, &line) > 0)
+	{
+		if (ft_verif_line_is_comm(line) == 1)
+			continue ;
+		if ((tmp = ft_is_ants(line)) == 0)
+			return (line);
+		*ants = tmp;
+	}
+	return (NULL);
+}
+
 int		main(void)
 {
 	t_list	*t;
 	char	*line;
+	int		nb_ants;
 
+	
 	t = NULL;
-	line = get_rooms(&t);
+	nb_ants = 0;
+	if(!(line = get_ants(&nb_ants)))
+		return (ft_printf("probleme sur les fourmis\n"));
+	if (nb_ants == 0)
+		return (ft_printf("probleme sur les fourmis\n"));
+	line = get_rooms(line, &t);
 	if (line == NULL)
 		return (ft_printf("start_programme\n"));
 	if (!(get_pipes(line, &t)))

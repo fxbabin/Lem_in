@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 13:34:27 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 13:56:11 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int					get_pipes(char *line, t_list **t);
 int					ft_verif_line_is_comm(char *line);
 int					ft_launch_cmp(t_room *crawler, const char *name);
 long long			ft_atoi_check(const char *str);
-char				*get_rooms(t_list **t);
+char				*get_rooms(char *line, t_list **t);
 t_room				*init_room(const char *str, int x, int y);
 /*
 ** ----------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/22 12:23:53 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 13:59:25 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,49 @@ int		ft_verif_room_is_uniq(char **room, t_list **t)
 }
 
 
-char	*get_rooms(t_list **t)
+char	*get_rooms(char *line, t_list **t)
 {
-	char	*line;
 	char	**room;
 	int		b;
 
-	line = NULL;
 	(void)t;
+	b = 0;
+	if (line[0] == '#')
+	{
+		if (!ft_strcmp(line, "##start"))
+		{
+			free(line);
+			get_next_line(0, &line);
+			b = 1;
+		}
+		else if (!ft_strcmp(line, "##end"))
+		{
+			free(line);
+			get_next_line(0, &line);
+			b = 2;
+		}
+	}
+	if (ft_verif_line_is_comm(line) == 0)
+	{
+		if (!(room = ft_verif_room_format(line)))
+		{
+			ft_printf("%s\n", line);
+			ft_printf("format invalide\n\n");
+			return (line);
+		}
+		if (!(ft_verif_room_validity(room)))
+		{
+			ft_printf("%s\n", line);
+			ft_printf("validite invalide\n\n");
+			return (line);
+		}
+		if (!(ft_verif_room_is_uniq(room, t)))
+		{
+			ft_printf("doublon\n\n");
+			return NULL;
+		}
+		ft_lstpushback(t, init_room(room[0], ft_atoi(room[1]), ft_atoi(room[2])), b);
+	}
 	while (get_next_line(0, &line) > 0)
 	{
 		b = 0;
@@ -201,7 +236,7 @@ char	*get_rooms(t_list **t)
 		//ft_char2dump(tab);
 		//freechar2(tab);
 		//	ft_printf("%s\n", line);
-	free(line);
+		free(line);
 	}
 	return (line);
 }
