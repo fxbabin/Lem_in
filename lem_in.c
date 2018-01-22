@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 21:06:04 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/22 21:47:26 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ char	*get_ants(int *ants)
 {
 	char	*line;
 	int		tmp;
-	
+
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
@@ -168,10 +168,10 @@ char	*get_ants(int *ants)
 }
 
 /*void	ft_eldel(void *content, size_t content_size)
-{
-	(void)content;
-	(void)content_size;
-}*/
+  {
+  (void)content;
+  (void)content_size;
+  }*/
 
 void	ft_free_pipes(t_list **pipes)
 {
@@ -188,7 +188,7 @@ void	ft_free_pipes(t_list **pipes)
 		free(tmp);
 		tmp = tmp2;
 	}
-//	ft_free_test(tmp->content);
+	//	ft_free_test(tmp->content);
 	free(tmp);
 }
 
@@ -259,23 +259,49 @@ int		main(void)
 	t_list	*t;
 	char	*line;
 	int		nb_ants;
+	int		i = 0;
 
-	
+
 	t = NULL;
 	nb_ants = 0;
 	if(!(line = get_ants(&nb_ants)))
-		return (ft_printf("probleme sur les fourmis\n"));
+	{
+		ft_printf("probleme sur les fourmis\n");
+		while (1)
+			i = 0;
+		return (0);
+	}
 	if (nb_ants == 0)
-		return (ft_printf("probleme sur les fourmis\n"));
+	{
+		ft_printf("probleme sur les fourmis\n");
+		free(line);
+//		while (1)
+//			i = 0;
+		return (0);
+	}
 	line = get_rooms(line, &t);
 	if (line == NULL)
-		return (ft_printf("start_programme\n"));
+	{
+		ft_printf("start_programme\n");
+		ft_lstnfree(&t);
+//		while (1)
+//			i = 0;
+		return (0);
+	}
 	if (!(get_pipes(line, &t)))
-		return (ft_printf("start programme 2\n"));
+	{
+		ft_printf("start programme 2\n");
+		ft_lstnfree(&t);
+//		while (1)
+//			i = 0;
+		return (0);
+	}
 	ft_printf("start programme 3\n");
 	//ft_lstdump(&t);
 	ft_lstndump(&t);
 	ft_lstnfree(&t);
+//	while (1)
+//		i = 0;
 	//ft_lstndump(&t);
 	//ft_free_listception(&t);
 	return (0);
