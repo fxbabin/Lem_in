@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/22 20:39:32 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 21:06:04 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	freechar2(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+
 }
 
 t_room		*init_room(const char *str, int x, int y)
@@ -48,7 +49,7 @@ void		ft_lstndump(t_list **list)
 {
 	t_list		*l;
 
-	if (!list || !*list)
+	if (!list)
 	{
 		ft_putstr("(null)\n");
 		return ;
@@ -65,6 +66,18 @@ void		ft_lstndump(t_list **list)
 	ft_putstr("NULL\n");
 	*list = l;
 }
+
+/*int		is_comment(const char *line)
+  {
+  if (ft_strcmp(line, "##end") && *line == '#')
+  return (1);
+  return (0);
+  }*/
+/*void	treat_line(t_list **t, )
+  {
+
+
+  }*/
 
 int		numelems(char **tab)
 {
@@ -142,10 +155,7 @@ char	*get_ants(int *ants)
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;
 		if ((tmp = ft_is_ants(line)) == 0)
-		{
-			ft_printf("ici\n");
 			return (line);
-		}
 		*ants = tmp;
 		if (*ants > 0)
 		{
@@ -153,17 +163,15 @@ char	*get_ants(int *ants)
 			get_next_line(0, &line);
 			return (line);
 		}
-		free(line);
 	}
-	free(line);
 	return (NULL);
 }
 
-void	ft_eldel(void *content, size_t content_size)
+/*void	ft_eldel(void *content, size_t content_size)
 {
 	(void)content;
 	(void)content_size;
-}
+}*/
 
 void	ft_free_pipes(t_list **pipes)
 {
@@ -175,10 +183,12 @@ void	ft_free_pipes(t_list **pipes)
 		return ;
 	while (tmp->next)
 	{
+		//free(tmp->content);
 		tmp2 = tmp->next;
 		free(tmp);
 		tmp = tmp2;
 	}
+//	ft_free_test(tmp->content);
 	free(tmp);
 }
 
@@ -187,6 +197,7 @@ void	ft_free_rooms(t_room *room)
 	ft_free_pipes(&(room->pipes));
 	free(room->sup);
 	free((void*)room->name);
+	//free(room->pipes);
 }
 
 void	ft_free_listception(t_list **t)
@@ -206,6 +217,43 @@ void	ft_free_listception(t_list **t)
 	free(tmp);
 }
 
+void	ft_eldel(void *content, size_t content_size)
+{
+	(void)content;
+	(void)content_size;
+}
+
+void	freenode(t_room *t)
+{
+	free((void*)t->name);
+	ft_lstdel(&(t->pipes), ft_elemdel);
+	free((void*)t->pipes);
+	free(t);
+	//ft_printf("name : %s\t; ", t->name);
+	//ft_printf(" x : %d\t; ", t->x);
+	//ft_printf("y : %d\t\t", t->y);
+	//ft_lstdump(&(t->pipes));
+}
+
+void		ft_lstnfree(t_list **list)
+{
+	t_list		*l;
+	t_list		*tmp;
+
+	if (!list || !*list)
+		return ;
+	l = *list;
+	while ((*list))
+	{
+		if ((*list)->content)
+			freenode((*list)->content);
+		tmp = (*list)->next;
+		free(*list);
+		*list = tmp;
+	}
+	//free(*list);
+	//*list = l;
+}
 int		main(void)
 {
 	t_list	*t;
@@ -218,17 +266,17 @@ int		main(void)
 	if(!(line = get_ants(&nb_ants)))
 		return (ft_printf("probleme sur les fourmis\n"));
 	if (nb_ants == 0)
-	{
-		free(line);
 		return (ft_printf("probleme sur les fourmis\n"));
-	}
 	line = get_rooms(line, &t);
 	if (line == NULL)
 		return (ft_printf("start_programme\n"));
 	if (!(get_pipes(line, &t)))
 		return (ft_printf("start programme 2\n"));
 	ft_printf("start programme 3\n");
-//	ft_lstndump(&t);
-	ft_free_listception(&t);
+	//ft_lstdump(&t);
+	ft_lstndump(&t);
+	ft_lstnfree(&t);
+	//ft_lstndump(&t);
+	//ft_free_listception(&t);
 	return (0);
 }

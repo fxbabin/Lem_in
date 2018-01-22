@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:33:11 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/22 19:33:00 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/22 21:07:25 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_verif_pipe_format(char *line)
 
 void	ft_launch_pushback(t_room *crawler, char *name)
 {
-	ft_lstpushback(&(crawler->pipes), init_room(name, 0, 0), 0);
+	ft_lstpushback(&(crawler->pipes), ft_strdup(name), 0);
 }
 
 int		ft_verif_unicity_of_pipe(t_room *crawler, char *name)
@@ -111,18 +111,14 @@ int		ft_are_rooms_exists(char *line, int i, t_list **t)
 	char	*name2;
 
 	j = 0;
-	if (!(name1 = (char*)malloc(sizeof(char) * (i + 1))))
+	if (!(name1 = (char*)malloc(sizeof(char) * i + 1)))
 		return (0);
-	ft_bzero(name1, i + 1);
-	//ft_printf("line i = %s || i = %d\n", line, i);
 	while (j < i)
 	{
 		name1[j] = line[j];
 		j++;
 	}
-	//ft_printf("j = %d\n", j);
-	name1[i] = '\0';
-//	ft_printf("name1 = %s\n", name1);
+	name1[j] = '\0';
 	j = i + 1;
 	while (line[j] != '\0')
 		j++;
@@ -139,9 +135,7 @@ int		ft_are_rooms_exists(char *line, int i, t_list **t)
 	name2[j] = '\0';
 	if (!(ft_search_rooms_name(name1, name2, t)))
 	{
-		ft_lstndump(t);
-		free(name1);
-		free(name2);
+		write(1, "ici\n", 4);
 		return (0);
 	}
 	free(name1);

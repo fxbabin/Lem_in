@@ -6,14 +6,14 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/22 19:33:04 by arobion          ###   ########.fr        #
+#    Updated: 2018/01/22 18:35:48 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LEM_IN			= lem-in
 
 CC				= gcc -g3
-CFLAGS			= -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra
 
 _SRCS			=	lem_in.c \
 					get_rooms.c \
