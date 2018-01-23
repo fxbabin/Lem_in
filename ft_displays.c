@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:50:37 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 12:57:49 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:06:38 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_lstndump(t_list **list)
 	l = *list;
 	while ((*list))
 	{
+		ft_printf("[%d]\t", (*list)->content_size);
 		if ((*list)->content)
 			dispnode((*list)->content);
 		else

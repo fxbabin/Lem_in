@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/23 13:26:35 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:06:40 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,14 @@ int			main(void)
 	line = get_rooms(line, &t);
 	if (line == NULL)
 	{
+		ft_lstndump(&t);
 		ft_printf("start_programme\n");
 		ft_lstnfree(&t);
 		return (0);
 	}
 	if (!(get_pipes(line, &t)))
 	{
+		ft_lstndump(&t);
 		ft_printf("start programme 2\n");
 		ft_lstnfree(&t);
 		return (0);
