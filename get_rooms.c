@@ -6,24 +6,24 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 13:25:35 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:43:56 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	get_rooms_norme1(char *line, int *b)
+void	get_rooms_norme1(char **line, int *b)
 {
-	if (!ft_strcmp(line, "##start"))
+	if (!ft_strcmp(*line, "##start"))
 	{
-		free(line);
-		get_next_line(0, &line);
+		free(*line);
+		get_next_line(0, line);
 		*b = 1;
 	}
-	else if (!ft_strcmp(line, "##end"))
+	else if (!ft_strcmp(*line, "##end"))
 	{
-		free(line);
-		get_next_line(0, &line);
+		free(*line);
+		get_next_line(0, line);
 		*b = 2;
 	}
 }
@@ -40,7 +40,7 @@ char	*get_rooms2(char *line, t_list **t, char **room, int b)
 	{
 		b = 0;
 		if (line[0] == '#')
-			get_rooms_norme1(line, &b);
+			get_rooms_norme1(&line, &b);
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;
 		if (!(room = ft_verif_room_format(line)))
@@ -95,7 +95,7 @@ char	*get_rooms(char *line, t_list **t)
 	b = 0;
 	room = NULL;
 	if (line[0] == '#')
-		get_rooms_norme1(line, &b);
+		get_rooms_norme1(&line, &b);
 	if (ft_verif_line_is_comm(line) == 0)
 	{
 		tril = get_rooms3(line, room, t, b);
