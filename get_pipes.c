@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:33:11 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/22 21:47:16 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 11:34:46 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int		ft_verif_pipe_format(char *line)
 	if (nb_sep != 1)
 		return (0);
 	return (1);
-}
-
-void	ft_launch_pushback(t_room *crawler, char *name)
-{
-	ft_lstpushback(&(crawler->pipes), ft_strdup(name), 0);
 }
 
 int		ft_verif_unicity_of_pipe(t_room *crawler, char *name)
@@ -71,76 +66,28 @@ int		ft_add_pipes_to_room(t_list **t, char *name1, char *name2)
 	return (1);
 }
 
-int		ft_search_rooms_name(char *name1, char *name2, t_list **t)
+int		get_pipes2(char *line, t_list **t, int i)
 {
-	int		i;
-	int		j;
-	t_list	*crawler;
-
-	if (ft_strcmp(name1, name2) == 0)
-		return (0);
-	i = 0;
-	j = 0;
-	crawler = *t;
-	while (crawler)
+	while (get_next_line(0, &line) > 0)
 	{
-		if (ft_launch_cmp(crawler->content, name1) == 0)
-			i = 1;
-		crawler = crawler->next;
-	}
-	crawler = *t;
-	while (crawler)
-	{
-		if (ft_launch_cmp(crawler->content, name2) == 0)
-			j = 1;
-		crawler = crawler->next;
-	}
-	if (i == 1 && j == 1)
-	{
-		if (!(ft_add_pipes_to_room(t, name1, name2)))
+		i = 0;
+		if (ft_verif_line_is_comm(line) == 1)
+			continue ;
+		if (!(ft_verif_pipe_format(line)))
+		{
+			free(line);
 			return (0);
-		return (1);
+		}
+		while (line[i] != '-')
+			i++;
+		if (!(ft_are_rooms_exists(line, i, t)))
+		{
+			free(line);
+			return (0);
+		}
+		free(line);
 	}
-	return (0);
-}
-
-int		ft_are_rooms_exists(char *line, int i, t_list **t)
-{
-	int		j;
-	char	*name1;
-	char	*name2;
-
-	j = 0;
-	if (!(name1 = (char*)malloc(sizeof(char) * i + 1)))
-		return (0);
-	while (j < i)
-	{
-		name1[j] = line[j];
-		j++;
-	}
-	name1[j] = '\0';
-	j = i + 1;
-	while (line[j] != '\0')
-		j++;
-	if (!(name2 = (char*)malloc(sizeof(char) * (j - i))))
-		return (0);
-	j = 0;
-	i++;
-	while (line[i] != '\0')
-	{
-		name2[j] = line[i];
-		j++;
-		i++;
-	}
-	name2[j] = '\0';
-	if (!(ft_search_rooms_name(name1, name2, t)))
-	{
-		free(name1);
-		free(name2);
-		return (0);
-	}
-	free(name1);
-	free(name2);
+	free(line);
 	return (1);
 }
 
@@ -162,26 +109,5 @@ int		get_pipes(char *line, t_list **t)
 		return (0);
 	}
 	free(line);
-	while (get_next_line(0, &line) > 0)
-	{
-		i = 0;
-		if (ft_verif_line_is_comm(line) == 1)
-			continue ;
-		if (!(ft_verif_pipe_format(line)))
-		{
-			free(line);
-			return (0);
-		}
-		while (line[i] != '-')
-			i++;
-		if (!(ft_are_rooms_exists(line, i, t)))
-		{
-			free(line);
-			return (0);
-		}
-		ft_printf("line = %s\n", line);
-		free(line);
-	}
-	free(line);
-	return (1);
+	return (get_pipes2(line, t, i));
 }

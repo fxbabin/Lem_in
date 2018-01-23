@@ -6,13 +6,13 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:05:41 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/21 14:18:40 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 11:16:38 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_iswp(char c)
+int					ft_iswp(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' \
 			|| c == '\r' || c == '\v' || c == '\f')
