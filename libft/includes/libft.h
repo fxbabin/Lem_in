@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 16:16:51 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/16 15:21:47 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/23 13:35:39 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ char				*ft_strjoinclr(char *s1, char *s2, int b);
 char				*ft_strnjoinclr(char *s1, char *s2, int len, int b);
 char				*ft_strreplace(char *str, const char *old,
 						const char *fresh);
-int				ft_strspn(const char *s, const char *charset);
-int				ft_strcspn(const char *s, const char *charset);
-char			ft_strbspn(const char *s, const char *charset);
-char			ft_strbcspn(const char *s, const char *charset);
+int					ft_strspn(const char *s, const char *charset);
+int					ft_strcspn(const char *s, const char *charset);
+char				ft_strbspn(const char *s, const char *charset);
+char				ft_strbcspn(const char *s, const char *charset);
 
 /*
 ** --------------------------- CONVERSION FUNCTIONS ----------------------------

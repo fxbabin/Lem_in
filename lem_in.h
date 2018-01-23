@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/23 13:03:15 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:36:53 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct		s_room
 	t_list			*sup;
 	t_list			*pipes;
 }					t_room;
-
 
 /*
 ** ----------------------------------------------------------------------------
@@ -68,6 +67,5 @@ void				ft_lstndump(t_list **list);
 
 void				ft_lstnfree(t_list **t);
 void				freechar2(char **tab);
-
 
 #endif
