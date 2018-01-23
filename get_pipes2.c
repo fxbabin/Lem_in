@@ -6,17 +6,17 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:30:39 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 11:32:41 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:29:39 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ft_boucle_norme(t_list *crawler, char *name, int *i)
+void	ft_boucle_norme(t_list **crawler, char *name, int *i)
 {
-	if (ft_launch_cmp(crawler->content, name) == 0)
+	if (ft_launch_cmp((*crawler)->content, name) == 0)
 		*i = 1;
-	crawler = crawler->next;
+	*crawler = (*crawler)->next;
 }
 
 int		ft_search_rooms_name(char *name1, char *name2, t_list **t)
@@ -31,10 +31,10 @@ int		ft_search_rooms_name(char *name1, char *name2, t_list **t)
 	j = 0;
 	crawler = *t;
 	while (crawler)
-		ft_boucle_norme(crawler, name1, &i);
+		ft_boucle_norme(&crawler, name1, &i);
 	crawler = *t;
 	while (crawler)
-		ft_boucle_norme(crawler, name2, &j);
+		ft_boucle_norme(&crawler, name2, &j);
 	if (i == 1 && j == 1)
 	{
 		if (!(ft_add_pipes_to_room(t, name1, name2)))

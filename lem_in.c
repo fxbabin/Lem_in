@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/23 12:56:55 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:26:35 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int			main(void)
 		ft_lstnfree(&t);
 		return (0);
 	}
-	ft_printf("start programme 3\n");
 	ft_lstndump(&t);
+	ft_printf("start programme 3\n");
 	ft_lstnfree(&t);
 	return (0);
 }
