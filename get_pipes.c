@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:33:11 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 13:29:41 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/24 14:59:10 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,27 @@ int		ft_verif_unicity_of_pipe(t_room *crawler, char *name)
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->content, name) == 0)
+		{
+			ft_printf("%s\n", name);
 			return (0);
+		}
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+t_room	*get_room_by_name(t_list **t, char *name)
+{
+	t_list		*l;
+
+	l = *t;
+	while (l)
+	{
+		if (ft_launch_cmp(l->content, name) == 0)
+			return (l->content);
+		l = l->next;
+	}
+	return (NULL);
 }
 
 int		ft_add_pipes_to_room(t_list **t, char *name1, char *name2)
@@ -57,10 +74,10 @@ int		ft_add_pipes_to_room(t_list **t, char *name1, char *name2)
 		{
 			if (ft_verif_unicity_of_pipe(crawler->content, name2) == 0)
 				return (0);
-			ft_launch_pushback(crawler->content, name2);
+			ft_launch_pushback(crawler->content, get_room_by_name(t, name2));
 		}
 		if (ft_launch_cmp(crawler->content, name2) == 0)
-			ft_launch_pushback(crawler->content, name1);
+			ft_launch_pushback(crawler->content, get_room_by_name(t, name1));
 		crawler = crawler->next;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:44:18 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 12:57:25 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/24 16:43:34 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ void	ft_eldel(void *content, size_t content_size)
 	(void)content_size;
 }
 
+/*void	ft_roomdel(void *content, size_t content_size)
+{
+ 	(void)content;
+	(void)content_size;
+}*/
+
 void	freenode(t_room *t)
 {
 	free((void*)t->name);
-	ft_lstdel(&(t->pipes), ft_elemdel);
+	ft_lstdel(&(t->pipes), ft_eldel);
 	free((void*)t->pipes);
 	free(t);
 }
@@ -52,4 +58,5 @@ void	ft_lstnfree(t_list **list)
 		free(*list);
 		*list = tmp;
 	}
+	free(*list);
 }

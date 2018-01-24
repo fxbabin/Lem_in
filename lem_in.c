@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/23 15:06:40 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/24 16:04:11 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_room		*init_room(const char *str, int x, int y)
 	n->name = ft_strdup(str);
 	n->x = x;
 	n->y = y;
-	n->sup = NULL;
 	n->pipes = NULL;
 	return (n);
 }
@@ -92,20 +91,26 @@ int			main(void)
 	line = get_rooms(line, &t);
 	if (line == NULL)
 	{
-		ft_lstndump(&t);
+		//ft_lstndump(&t);
 		ft_printf("start_programme\n");
 		ft_lstnfree(&t);
 		return (0);
 	}
 	if (!(get_pipes(line, &t)))
 	{
-		ft_lstndump(&t);
+		//ft_lstndump(&t);
 		ft_printf("start programme 2\n");
 		ft_lstnfree(&t);
 		return (0);
 	}
-	ft_lstndump(&t);
-	ft_printf("start programme 3\n");
+	//ft_lstndump(&t);
+	//ft_printf("start programme 3\n");
+	
+	/*if (!solver(&t))
+	{
+		ft_printf("double start or double end\n");
+		return (0);
+	}*/
 	ft_lstnfree(&t);
 	return (0);
 }

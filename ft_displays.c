@@ -6,18 +6,41 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:50:37 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/23 15:06:38 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/24 14:58:50 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void		ft_lstroomdump(t_list **list)
+{
+	t_list		*l;
+
+	if (!list || !*list)
+	{
+		ft_putstr("(null)\n");
+		return ;
+	}
+	l = *list;
+	while ((*list))
+	{
+		if ((*list)->content)
+			ft_putstr((char*)((t_room*)(*list)->content)->name);
+		else
+			ft_putstr(" (null) ");
+		ft_putstr(" -> ");
+		*list = (*list)->next;
+	}
+	ft_putstr(" NULL\n");
+	*list = l;
+}
 
 void	dispnode(t_room *t)
 {
 	ft_printf("name : %s\t; ", t->name);
 	ft_printf(" x : %d\t; ", t->x);
 	ft_printf("y : %d\t\t", t->y);
-	ft_lstdump(&(t->pipes));
+	ft_lstroomdump(&(t->pipes));
 }
 
 void	ft_lstndump(t_list **list)

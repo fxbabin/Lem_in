@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/23 13:36:53 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/24 14:50:19 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				b;
-	t_list			*sup;
 	t_list			*pipes;
 }					t_room;
 
@@ -57,9 +56,10 @@ int					ft_are_rooms_exists(char *line, int i, t_list **t);
 int					ft_verif_line_is_comm(char *line);
 long long			ft_atoi_check(const char *str);
 int					ft_launch_cmp(t_room *crawler, const char *name);
-void				ft_launch_pushback(t_room *room, char *name);
+void				ft_launch_pushback(t_room *crawler, t_room *room);
 t_room				*init_room(const char *str, int x, int y);
 void				ft_lstndump(t_list **list);
+int					solver(t_list **t);
 
 /*
 ** ------------------------------- FREE FUNCTIONS -----------------------------
