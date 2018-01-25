@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/24 16:04:11 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/25 15:36:49 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,49 @@ char		*get_ants(int *ants)
 	return (NULL);
 }
 
+void			ft_lsttremoveif(t_list **begin_list, void *content_ref,
+		int (*cmp)())
+{
+	t_list		*tmp;
+	t_list		*curr;
+
+	while (*begin_list && !cmp((*begin_list)->content, content_ref,
+				sizeof(content_ref)))
+	{
+		tmp = *begin_list;
+		*begin_list = (*begin_list)->next;
+		free(tmp);
+	}
+	curr = *begin_list;
+	while (curr && curr->next)
+	{
+		if (!cmp((curr->next->content), content_ref, sizeof(content_ref)))
+		{
+			tmp = curr->next;
+			curr->next = tmp->next;
+			free(tmp);
+		}
+		if (curr->next)
+			curr = curr->next;
+	}
+}
+
+int             ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)())
+{
+	t_list          *tmp;
+
+	if (!begin_list || !data_ref || !cmp)
+		return (0);
+	tmp = *begin_list;
+	while (tmp)
+	{
+		if (!(*cmp)(tmp->content, data_ref, sizeof(data_ref)))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int			main(void)
 {
 	t_list	*t;
@@ -91,26 +134,37 @@ int			main(void)
 	line = get_rooms(line, &t);
 	if (line == NULL)
 	{
-		//ft_lstndump(&t);
+		ft_lstndump(&t);
 		ft_printf("start_programme\n");
 		ft_lstnfree(&t);
 		return (0);
 	}
 	if (!(get_pipes(line, &t)))
 	{
-		//ft_lstndump(&t);
+		ft_lstndump(&t);
 		ft_printf("start programme 2\n");
 		ft_lstnfree(&t);
 		return (0);
 	}
-	//ft_lstndump(&t);
-	//ft_printf("start programme 3\n");
-	
-	/*if (!solver(&t))
-	{
-		ft_printf("double start or double end\n");
-		return (0);
-	}*/
+	ft_lstndump(&t);
+	ft_printf("start programme 3\n");
+	if (!solver(&t))
+	  {
+	  ft_printf("double start or double end\n");
+	  return (0);
+	  }
+	//ft_printf("%d\n", ft_lstin(&t, "toto", ft_memcmp));
 	ft_lstnfree(&t);
+	/*t_list	*a;
+
+	a = NULL;
+	ft_lstpushback(&a, "a", 0);
+	ft_lstpushback(&a, "b", 0);
+	ft_lstpushback(&a, "c", 0);
+	ft_lstdump(&a);
+	if (!ft_lstin(&a, "c", ft_memcmp))
+		ft_lstpushback(&a, "c", 0);*/
+	//ft_lstdump(&a);
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:34:25 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/24 16:30:58 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/24 17:02:39 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	ft_launch_pushback(t_room *crawler, t_room *room)
 {
-	/*t_room		*t;
-
-	if (!(t = (t_room*)malloc(sizeof(t_room))))
-		return ;
-	ft_memcpy(t, room, sizeof(t_room));*/
 	ft_lstpushback(&(crawler->pipes), room, 0);
 }
 

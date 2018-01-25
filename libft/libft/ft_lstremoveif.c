@@ -6,49 +6,35 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:59:28 by fbabin            #+#    #+#             */
-/*   Updated: 2017/11/14 20:02:18 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/25 11:55:41 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_begin(t_list **begin_list, void *content_ref, int (*cmp)())
-{
-	t_list		*l_next;
-
-	while (cmp((*begin_list)->content, content_ref) == 0)
-	{
-		l_next = (*begin_list)->next;
-		free(*begin_list);
-		(*begin_list) = l_next;
-	}
-}
-
 void			ft_lstremoveif(t_list **begin_list, void *content_ref,
-					int (*cmp)())
+		int (*cmp)())
 {
-	t_list		*l_tmp;
-	t_list		*l_curr;
-	t_list		*l_next;
+	t_list		*tmp;
+	t_list		*curr;
 
-	if (!begin_list || !*begin_list || !content_ref || !cmp)
-		return ;
-	ft_begin(begin_list, content_ref, cmp);
-	l_curr = (*begin_list);
-	l_next = (*begin_list)->next;
-	while (l_next)
+	while (*begin_list && !cmp((*begin_list)->content, content_ref,
+				sizeof(content_ref)))
 	{
-		if (cmp(l_next->content, content_ref) == 0)
+		tmp = *begin_list;
+		*begin_list = (*begin_list)->next;
+		free(tmp);
+	}
+	curr = *begin_list;
+	while (curr && curr->next)
+	{
+		if (!cmp((curr->next->content), content_ref, sizeof(content_ref)))
 		{
-			l_tmp = l_next;
-			l_next = l_next->next;
-			free(l_tmp);
-			l_curr->next = l_next;
+			tmp = curr->next;
+			curr->next = tmp->next;
+			free(tmp);
 		}
-		else
-		{
-			l_curr = l_next;
-			l_next = l_next->next;
-		}
+		if (curr->next)
+			curr = curr->next;
 	}
 }
