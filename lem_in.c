@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/25 15:36:49 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/26 17:26:38 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_room		*init_room(const char *str, int x, int y)
 	n->name = ft_strdup(str);
 	n->x = x;
 	n->y = y;
+	n->boo = 0;
 	n->pipes = NULL;
 	return (n);
 }

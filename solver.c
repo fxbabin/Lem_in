@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/26 16:46:07 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/26 17:44:32 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,10 @@ void	get_children(t_list **t, t_list **visited, t_room *room)
 	tmp = room->pipes;
 	while (tmp)
 	{
-		if (!ft_lstin(visited, tmp->content, ft_memcmp, sizeof(t_room)))
+		if (!ft_lstin(visited, tmp->content, ft_memcmp, sizeof(t_room)) && (int)((t_room*)tmp->content)->boo == 0)
 			ft_lstpushback(t, (t_room*)tmp->content, 0);
 		tmp = tmp->next;
 	}
-	//return (0);
 }
 
 void			ft_lstremovefirst(t_list **begin_list, void *content_ref,
@@ -98,7 +97,6 @@ void		ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t siz
 	tmp = *add;
 	while (tmp)
 	{
-		//ft_printf("oookkk\n");
 		if (!ft_lstin(begin_list, tmp->content, cmp, size))
 			ft_lstpushback(begin_list, tmp->content, 0);
 		tmp = tmp->next;
@@ -172,7 +170,7 @@ int		new_bfs(t_list **ntv, t_list **visited, t_room *dest)
 			ft_lstremovefirst(ntv, (*ntv)->content, ft_memcmp, sizeof(t_room));
 		}
 		ft_lstremovedoubles(ntv);
-		ft_lstndump(ntv);
+//		ft_lstndump(ntv);
 		ret = new_bfs(ntv, visited, dest);
 		if (ret)
 			return (1);
@@ -243,7 +241,6 @@ t_list		*find_path(t_list **visited, t_list *end, t_list *start)
 */
 t_list		*find_path(t_list **visited, t_list *end, t_list *start)
 {
-	//t_room		*room;
 	t_list		*tmpv;
 	t_list		*ret;
 	t_list		*curr;
@@ -265,6 +262,19 @@ t_list		*find_path(t_list **visited, t_list *end, t_list *start)
 	}
 	return (ret);	
 }
+
+void	ft_change_boo(t_list *path)
+{
+	t_list	*tmp;
+
+	tmp = path->next;
+	while (tmp->next)
+	{
+		((t_room*)tmp->content)->boo = 1;
+		tmp = tmp->next;
+	}
+}
+
 int		solver(t_list **t)
 {
 	t_list		*ntv;
@@ -279,13 +289,20 @@ int		solver(t_list **t)
 		return (0);
 	ft_lstpushback(&ntv, start->content, 0);
 	ft_printf("%d\n", new_bfs(&ntv, &visited, end->content));
-	ft_printf("VISITED\n");
-	ft_lstndump(&visited);
-	ft_printf("VISITED\n");
-	ft_lstndump(&ntv);
-	ft_printf("%s\n", ((t_room*)(*start).content)->name);
-	ft_printf("%s\n", ((t_room*)(*end).content)->name);
-	ft_printf("\n\n");
+	//ft_printf("VISITED\n");
+	//ft_lstndump(&visited);
+	//ft_printf("VISITED\n");
+	//ft_lstndump(&ntv);
+	//ft_printf("%s\n", ((t_room*)(*start).content)->name);
+//	ft_printf("%s\n", ((t_room*)(*end).content)->name);
+//	ft_printf("\n\n");
+	path = find_path(&visited, end, start);
+	ft_lstndump(&path);
+	ft_change_boo(path);
+	ntv = NULL;
+	visited = NULL;
+	ft_lstpushback(&ntv, start->content, 0);
+	ft_printf("%d\n", new_bfs(&ntv, &visited, end->content));
 	path = find_path(&visited, end, start);
 	ft_lstndump(&path);
 	return (1);

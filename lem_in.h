@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/26 16:19:38 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/26 17:26:10 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				b;
+	int				boo;
 	t_list			*pipes;
 }					t_room;
 
