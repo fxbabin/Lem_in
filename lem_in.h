@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/24 14:50:19 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/26 16:19:38 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int					ft_verif_room_is_uniq(char **room, t_list **t);
 int					get_pipes(char *line, t_list **t);
 int					ft_add_pipes_to_room(t_list **t, char *name1, char *name2);
 int					ft_are_rooms_exists(char *line, int i, t_list **t);
+int					ft_verif_unicity_of_pipe(t_room *room, char *name);
 
 int					ft_verif_line_is_comm(char *line);
 long long			ft_atoi_check(const char *str);

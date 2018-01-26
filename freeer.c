@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:44:18 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/24 17:02:43 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/25 21:39:28 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	freechar2(char **tab)
 	free(tab);
 }
 
-void	ft_eldel(void *content, size_t content_size)
+/*void	ft_eldel(void *content, size_t content_size)
 {
 	(void)content;
 	(void)content_size;
-}
+}*/
 
 /*void	ft_roomdel(void *content, size_t content_size)
 {
