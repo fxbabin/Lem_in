@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/26 17:26:38 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/27 15:11:30 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int			main(void)
 	}
 	ft_lstndump(&t);
 	ft_printf("start programme 3\n");
-	if (!solver(&t))
+	if (!solver(&t, nb_ants))
 	  {
 	  ft_printf("double start or double end\n");
 	  return (0);

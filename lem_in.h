@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/26 17:26:10 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/27 15:15:10 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ long long			ft_atoi_check(const char *str);
 int					ft_launch_cmp(t_room *crawler, const char *name);
 void				ft_launch_pushback(t_room *crawler, t_room *room);
 t_room				*init_room(const char *str, int x, int y);
+
 void				ft_lstndump(t_list **list);
-int					solver(t_list **t);
+
+int					solver(t_list **t, int nb_ants);
+int					find_cycles(t_list **list, int nb_ants);
 
 /*
 ** ------------------------------- FREE FUNCTIONS -----------------------------

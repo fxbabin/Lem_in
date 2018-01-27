@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:50:37 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/24 14:58:50 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/27 14:49:42 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,25 @@ void	ft_lstndump(t_list **list)
 	ft_putstr("NULL\n");
 	*list = l;
 }
+
+void	ft_pathdump(t_list **list)
+{
+	t_list *l;
+	if (!(list))
+	{
+		ft_putstr("(null)\n");
+		return ;
+	}
+	l = *list;
+	while ((*list))
+	{
+		if ((*list)->content)
+			ft_lstndump((*list)->content);
+		else
+			ft_putstr(" (null) ");
+		*list = (*list)->next;
+	}
+	ft_putstr("NULL\n");
+	*list = l;
+}
+
