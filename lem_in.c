@@ -147,7 +147,7 @@ int			main(void)
 		ft_lstnfree(&t);
 		return (0);
 	}
-	ft_lstndump(&t);
+//	ft_lstndump(&t);
 	ft_printf("start programme 3\n");
 	if (!solver(&t, nb_ants))
 	  {
