@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 12:34:35 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 18:19:47 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 20:44:22 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		min_path(int *nb_ants, int i)
 {
 	int		ret;
 	int		j;
-	
+
 	j = 0;
 	ret = 0;
 	while (j < i)
@@ -59,7 +59,7 @@ int		max_path(int *nb_ants, int i)
 {
 	int		ret;
 	int		j;
-	
+
 	j = 0;
 	ret = 0;
 	while (j <= i)
@@ -111,7 +111,7 @@ void	print(int nb, char *str)
 void	print_one_path(int *tab, char **names, int size)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < size)
 	{
@@ -135,42 +135,77 @@ void	print_at_this_cycle(int **tabs, char ***names, t_list **paths)
 	}
 }
 
-void	affichage(t_list **paths, int *nb_ants, int nb_cycles)
+void	ft_init(int *i, t_list **tmp, t_list **paths)
 {
-	int		**tabs;
-	int		i;
-	char	***names;
-	t_list	*tmp;
-	int		j;
-	t_list	*tmp2;
+	*i = -1;
+	*tmp = *paths;
+}
 
-	tmp = *paths;
-	i = 0;
-	if (!(tabs = (int**)malloc(sizeof(int*) * ft_lstsize(*paths))))
-		return ;
+void	ft_init2(int *j, t_list **tmp2, t_list *tmp)
+{
+	*j = -1;
+	*tmp2 = tmp->content;
+}
+
+char	***mall_names(t_list **paths)
+{
+	int		i;
+	int		j;
+	t_list	*tmp;
+	t_list	*tmp2;
+	char	***names;
+
+	ft_init(&i, &tmp, paths);
 	if (!(names = (char***)malloc(sizeof(char**) * ft_lstsize(*paths))))
-		return ;
-	while (i < ft_lstsize(*paths))
+		return (NULL);
+	while (++i < ft_lstsize(*paths))
 	{
-		j = 0;
-		tmp2 = tmp->content;
-		if (!(tabs[i] = (int*)malloc(sizeof(int) * (ft_lstsize(tmp->content) - 1))))
-			return ;
-		if (!(names[i] = (char**)malloc(sizeof(char*) * (ft_lstsize(tmp->content) - 1))))
-			return ;
+		ft_init2(&j, &tmp2, tmp);
+		if (!(names[i] = (char**)malloc(sizeof(char*) *\
+						(ft_lstsize(tmp->content)))))
+			return (NULL);
 		tmp2 = tmp2->next;
-		while (j < ft_lstsize(tmp->content) - 1)
+		while (++j < ft_lstsize(tmp->content) - 1)
 		{
 			names[i][j] = ft_strdup(((t_room*)tmp2->content)->name);
 			tmp2 = tmp2->next;
-			j++;
 		}
+		names[i][j] = NULL;
+		tmp = tmp->next;
+	}
+	return (names);
+}
+
+int		**mall_tabs(t_list **paths)
+{
+	int		i;
+	t_list	*tmp;
+	int		**tabs;
+
+	i = 0;
+	tmp = *paths;
+	if (!(tabs = (int**)malloc(sizeof(int*) * ft_lstsize(*paths))))
+		return (NULL);
+	while (i < ft_lstsize(*paths))
+	{
+		if (!(tabs[i] = (int*)malloc(sizeof(int) *\
+						(ft_lstsize(tmp->content) - 1))))
+			return (NULL);
 		i++;
 		tmp = tmp->next;
 	}
+	return (tabs);
+}
+
+void	set_tabs(t_list **paths, int **tabs)
+{
+	int		i;
+	int		j;
+	t_list	*tmp;
+
+	tmp = *paths;
 	i = 0;
 	j = 0;
-	tmp = *paths;
 	while (i < ft_lstsize(*paths))
 	{
 		j = 0;
@@ -182,9 +217,18 @@ void	affichage(t_list **paths, int *nb_ants, int nb_cycles)
 		tmp = tmp->next;
 		i++;
 	}
+}
 
+void	affichage(t_list **paths, int *nb_ants, int nb_cycles)
+{
+	int		**tabs;
+	int		i;
+	char	***names;
+
+	names = mall_names(paths);
+	tabs = mall_tabs(paths);
+	set_tabs(paths, tabs);
 	i = 0;
-	j = 0;
 	while (i < nb_cycles)
 	{
 		move_all_ants(tabs, paths);
@@ -193,4 +237,6 @@ void	affichage(t_list **paths, int *nb_ants, int nb_cycles)
 		ft_printf("\n");
 		i++;
 	}
+	freenames(names, paths);
+	freetabs(tabs, paths);
 }

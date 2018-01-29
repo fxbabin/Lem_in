@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:00:24 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 18:19:40 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 19:48:24 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		how_many_ants(int *roads_size, int nb_roads, int n, t_list **paths)
 	egalize_ants(nb_ants, nb_roads, n);
 	ret = roads_size[0] - 2 + nb_ants[0];
 	affichage(paths, nb_ants, ret);
+	free(nb_ants);
 	return (ret);
 }
 
@@ -91,7 +92,8 @@ int		find_cycles(t_list **paths, int n)
 	int			ret;
 
 	nb_roads = ft_lstsize(*paths);
-	roads_size = malloc(sizeof(int) * nb_roads);
+	if(!(roads_size = malloc(sizeof(int) * nb_roads)))
+		return (0);
 	tmp = *paths;
 	i = 0;
 	while (i < nb_roads)
@@ -101,5 +103,6 @@ int		find_cycles(t_list **paths, int n)
 		i++;
 	}
 	ret = how_many_ants(roads_size, nb_roads, n, paths);
+	free(roads_size);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:44:18 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 18:57:18 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 20:04:35 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,42 @@ void	ft_lstnfree2(t_list **list)
 		*list = tmp;
 	}
 	free(*list);
+}
+
+void	freenames(char ***names, t_list **paths)
+{
+	int		i;
+	int		j;
+	t_list	*tmp;
+
+	i = 0;
+	j = 0;
+	tmp = *paths;
+	while (i < ft_lstsize(*paths))
+	{
+		j = 0;
+		while (j <= ft_lstsize(tmp->content) - 1)
+		{
+			free(names[i][j]);
+			j++;
+		}
+		free(names[i]);
+		i++;
+	}
+	free(names);
+}
+
+void	freetabs(int **tabs, t_list **paths)
+{
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = *paths;
+	while (i < ft_lstsize(*paths))
+	{
+		free(tabs[i]);
+		i++;
+	}
+	free(tabs);
 }

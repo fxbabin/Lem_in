@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 18:55:16 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 19:41:11 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,8 @@ void				affichage(t_list **paths, int *nb_ants, int _nb_cycles);
 void				ft_lstnfree(t_list **t);
 void				ft_lstnfree2(t_list **t);
 void				freechar2(char **tab);
+void				freenames(char ***names, t_list **paths);
+void				freetabs(int **tabs, t_list **paths);
+
 
 #endif
