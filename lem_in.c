@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 18:11:18 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 18:45:24 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void			ft_lsttremoveif(t_list **begin_list, void *content_ref,
 	}
 }
 
-int             ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)())
+int			ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)())
 {
 	t_list          *tmp;
 
@@ -151,22 +151,10 @@ int			main(void)
 	}
 	ft_printf("\n");
 	if (!solver(&t, nb_ants))
-	  {
-	  ft_printf("double start or double end\n");
-	  return (0);
-	  }
-	//ft_printf("%d\n", ft_lstin(&t, "toto", ft_memcmp));
+	{
+		ft_printf("double start or double end\n");
+		return (0);
+	}
 	ft_lstnfree(&t);
-	/*t_list	*a;
-
-	a = NULL;
-	ft_lstpushback(&a, "a", 0);
-	ft_lstpushback(&a, "b", 0);
-	ft_lstpushback(&a, "c", 0);
-	ft_lstdump(&a);
-	if (!ft_lstin(&a, "c", ft_memcmp))
-		ft_lstpushback(&a, "c", 0);*/
-	//ft_lstdump(&a);
-
 	return (0);
 }

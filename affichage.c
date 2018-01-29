@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 12:34:35 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 17:55:11 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 18:19:47 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	print_at_this_cycle(int **tabs, char ***names, t_list **paths)
 	}
 }
 
-void	affichage(t_list **paths, int *nb_ants, int n, int nb_cycles)
+void	affichage(t_list **paths, int *nb_ants, int nb_cycles)
 {
 	int		**tabs;
 	int		i;
@@ -144,7 +144,6 @@ void	affichage(t_list **paths, int *nb_ants, int n, int nb_cycles)
 	int		j;
 	t_list	*tmp2;
 
-	(void)n;
 	tmp = *paths;
 	i = 0;
 	if (!(tabs = (int**)malloc(sizeof(int*) * ft_lstsize(*paths))))
@@ -178,7 +177,6 @@ void	affichage(t_list **paths, int *nb_ants, int n, int nb_cycles)
 		while (j < ft_lstsize(tmp->content) - 1)
 		{
 			tabs[i][j] = 0;
-		//	ft_printf("tab[%d][%d] = %d\n", i, j, tabs[i][j]);
 			j++;
 		}
 		tmp = tmp->next;

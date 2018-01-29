@@ -6,13 +6,13 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 17:59:46 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 18:57:16 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			get_start_end(t_list **list, t_list **start, t_list **end)
+int				get_start_end(t_list **list, t_list **start, t_list **end)
 {
 	t_list		*l;
 	int			s;
@@ -75,7 +75,7 @@ void			ft_lstremovefirst(t_list **begin_list, void *content_ref,
 	}
 }
 
-void		ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t size)
+void			ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t size)
 {
 	t_list		*tmp;
 
@@ -90,7 +90,7 @@ void		ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t siz
 	}
 }
 
-void	ft_lstremovedoubles(t_list **t)
+void			ft_lstremovedoubles(t_list **t)
 {
 	t_list		*uniq;
 	t_list		*tmp;
@@ -107,7 +107,7 @@ void	ft_lstremovedoubles(t_list **t)
 	*t = uniq;
 }
 
-void	get_children(t_list **t, t_list **visited, t_room *room)
+void			get_children(t_list **t, t_list **visited, t_room *room)
 {
 	t_list		*tmp;
 
@@ -120,7 +120,7 @@ void	get_children(t_list **t, t_list **visited, t_room *room)
 	}
 }
 
-int		new_bfs(t_list **ntv, t_list **visited, t_room *dest)
+int				new_bfs(t_list **ntv, t_list **visited, t_room *dest)
 {
 	int		ret;
 	int		n;
@@ -146,7 +146,7 @@ int		new_bfs(t_list **ntv, t_list **visited, t_room *dest)
 	return (0);
 }
 
-t_list		*find_path(t_list **visited, t_list *end, t_list *start)
+t_list			*find_path(t_list **visited, t_list *end, t_list *start)
 {
 	t_list		*tmpv;
 	t_list		*ret;
@@ -170,7 +170,7 @@ t_list		*find_path(t_list **visited, t_list *end, t_list *start)
 	return (ret);	
 }
 
-void	ft_change_boo(t_list *path)
+void			ft_change_boo(t_list *path)
 {
 	t_list	*tmp;
 
@@ -182,12 +182,12 @@ void	ft_change_boo(t_list *path)
 	}
 }
 
-void	ft_launch_dump(t_list *list)
+void			ft_launch_dump(t_list *list)
 {
 	ft_lstndump(&list);
 }
 
-int		solver(t_list **t, int nb_ants)
+int				solver(t_list **t, int nb_ants)
 {
 	t_list		*ntv;
 	t_list		*visited;
@@ -206,36 +206,13 @@ int		solver(t_list **t, int nb_ants)
 	{
 		path = find_path(&visited, end, start);
 		ft_lstpushback(&paths_list, path, 0);
-		//ft_lstndump(&path);
 		ft_change_boo(path);
+//		ft_lstnfree2(&path);
 		ntv = NULL;
 		visited = NULL;
 		ft_lstpushback(&ntv, start->content, 0);
 	}
 	find_cycles(&paths_list, nb_ants);
-//	while (paths_list)
-//	{
-//		ft_launch_dump(paths_list->content);
-//		paths_list = paths_list->next;
-//	}
-	/*
-	ft_printf("%d\n", new_bfs(&ntv, &visited, end->content));
-	//ft_printf("VISITED\n");
-	//ft_lstndump(&visited);
-	//ft_printf("VISITED\n");
-	//ft_lstndump(&ntv);
-	//ft_printf("%s\n", ((t_room*)(*start).content)->name);
-	//	ft_printf("%s\n", ((t_room*)(*end).content)->name);
-	//	ft_printf("\n\n");
-	path = find_path(&visited, end, start);
-	ft_lstndump(&path);
-	ft_change_boo(path);
-	ntv = NULL;
-	visited = NULL;
-	ft_lstpushback(&ntv, start->content, 0);
-	ft_printf("%d\n", new_bfs(&ntv, &visited, end->content));
-	path = find_path(&visited, end, start);
-	ft_lstndump(&path);
-	*/
+//	ft_lstnfree(&paths_list);
 	return (1);
 }
