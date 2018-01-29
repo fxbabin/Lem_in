@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/26 17:26:22 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 18:11:08 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	get_rooms_norme1(char **line, int *b)
 		free(*line);
 		*b = 1;
 		get_next_line(0, line);
+		ft_printf("%s\n", *line);
 		get_rooms_norme1(line, b);
 	}
 	else if (!ft_strcmp(*line, "##end"))
@@ -26,6 +27,7 @@ void	get_rooms_norme1(char **line, int *b)
 		free(*line);
 		*b = 2;
 		get_next_line(0, line);
+		ft_printf("%s\n", *line);
 		get_rooms_norme1(line, b);
 	}
 }
@@ -40,6 +42,7 @@ char	*get_rooms2(char *line, t_list **t, char **room, int b)
 {
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_printf("%s\n", line);
 		b = 0;
 		if (line[0] == '#')
 			get_rooms_norme1(&line, &b);

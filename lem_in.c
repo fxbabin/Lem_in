@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/27 15:11:30 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 18:11:18 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char		*get_ants(int *ants)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_printf("%s\n", line);
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;
 		if ((tmp = ft_is_ants(line)) == 0)
@@ -64,6 +65,7 @@ char		*get_ants(int *ants)
 		{
 			free(line);
 			get_next_line(0, &line);
+			ft_printf("%s\n", line);
 			return (line);
 		}
 	}
@@ -147,8 +149,7 @@ int			main(void)
 		ft_lstnfree(&t);
 		return (0);
 	}
-//	ft_lstndump(&t);
-	ft_printf("start programme 3\n");
+	ft_printf("\n");
 	if (!solver(&t, nb_ants))
 	  {
 	  ft_printf("double start or double end\n");

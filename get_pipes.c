@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:33:11 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/24 14:59:10 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/01/29 18:11:45 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		get_pipes2(char *line, t_list **t, int i)
 {
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_printf("%s\n", line);
 		i = 0;
 		if (ft_verif_line_is_comm(line) == 1)
 			continue ;

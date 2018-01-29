@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 12:34:35 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 15:28:58 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 17:55:11 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ void	affichage(t_list **paths, int *nb_ants, int n, int nb_cycles)
 	int		j;
 	t_list	*tmp2;
 
-	(void)nb_ants;
 	(void)n;
 	tmp = *paths;
 	i = 0;
@@ -170,21 +169,22 @@ void	affichage(t_list **paths, int *nb_ants, int n, int nb_cycles)
 		i++;
 		tmp = tmp->next;
 	}
-/*	i = 0;
+	i = 0;
 	j = 0;
 	tmp = *paths;
 	while (i < ft_lstsize(*paths))
 	{
 		j = 0;
-		while (j < ft_lstsize(tmp->content))
+		while (j < ft_lstsize(tmp->content) - 1)
 		{
-			ft_printf("name[%d][%d] = %s\n", i, j, names[i][j]);
+			tabs[i][j] = 0;
+		//	ft_printf("tab[%d][%d] = %d\n", i, j, tabs[i][j]);
 			j++;
 		}
 		tmp = tmp->next;
 		i++;
 	}
-*/
+
 	i = 0;
 	j = 0;
 	while (i < nb_cycles)
