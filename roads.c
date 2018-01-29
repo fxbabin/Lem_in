@@ -6,12 +6,24 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:00:24 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 20:47:27 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 22:00:47 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <stdio.h>
+
+void	ft_print(int *tab, int nb)
+{
+	int		i;
+
+	i = 0;
+	while (i < nb)
+	{
+		ft_printf("tab[%d] = %d\n", i, tab[i]);
+		i++;
+	}
+}
 
 int		somme_sizes(int *roads_size, int nb_roads, int i, int n)
 {
@@ -52,6 +64,31 @@ void	egalize_ants(int *nb_ants, int nb_roads, int n)
 	}
 }
 
+void	egalize_ants2(int *nb_ants, int nb_roads, int n)
+{
+	int		i;
+	int		j;
+
+	(void)n;
+	i = 0;
+	j = 0;
+	while (j < nb_roads)
+	{
+		i = 0;
+		while (i < nb_roads)
+		{
+			if (nb_ants[i] < 0)
+			{
+				nb_ants[i - 1] = nb_ants[i - 1] + nb_ants[i];
+				nb_ants[i] = 0;
+				break ;
+			}
+			i++;
+		}
+		j++;
+	}
+}
+
 int		how_many_ants(int *roads_size, int nb_roads, int n, t_list **paths)
 {
 	int		*nb_ants;
@@ -67,6 +104,7 @@ int		how_many_ants(int *roads_size, int nb_roads, int n, t_list **paths)
 		i++;
 	}
 	egalize_ants(nb_ants, nb_roads, n);
+	egalize_ants2(nb_ants, nb_roads, n);
 	ret = roads_size[0] - 2 + nb_ants[0];
 	affichage(paths, nb_ants, ret);
 	free(nb_ants);
