@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/27 15:11:22 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:21:21 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ int		solver(t_list **t, int nb_ants)
 	//ft_lstpushback(&ntv, start->content, 0);
 	((t_room*)start->content)->boo = 1;
 	fils = ((t_room*)start->content)->pipes;
-	paths = back1(ntv, start, end, visited, fils);
+	paths = back1(ntv, start, end, visited, start);
 	i = find_cycles(&paths, nb_ants);
 	ft_printf("nb_cycles = %d\n", i);
 

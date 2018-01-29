@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/27 15:15:10 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 14:11:04 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void				ft_lstndump(t_list **list);
 int					solver(t_list **t, int nb_ants);
 int					find_cycles(t_list **list, int nb_ants);
 
+void				affichage(t_list **paths, int *nb_ants, int n, int _nb_cycles);
 /*
 ** ------------------------------- FREE FUNCTIONS -----------------------------
 */
