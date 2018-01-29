@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 14:42:56 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 18:17:50 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 21:12:29 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ char	*get_rooms2(char *line, t_list **t, char **room, int b)
 {
 	while (get_next_line(0, &line) > 0)
 	{
-		ft_printf("%s\n", line);
-		b = 0;
+		print_and_norme(line, &b);
 		if (line[0] == '#')
 			get_rooms_norme1(&line, &b);
 		if (ft_verif_line_is_comm(line) == 1)

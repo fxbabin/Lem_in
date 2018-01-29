@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 18:45:24 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 20:52:46 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			ft_lsttremoveif(t_list **begin_list, void *content_ref,
 
 int			ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-	t_list          *tmp;
+	t_list	*tmp;
 
 	if (!begin_list || !data_ref || !cmp)
 		return (0);
@@ -124,15 +124,11 @@ int			main(void)
 	t = NULL;
 	nb_ants = 0;
 	if (!(line = get_ants(&nb_ants)))
-	{
-		ft_printf("probleme sur les fourmis\n");
-		return (0);
-	}
+		return (ft_printf("probleme sur les fourmis\n"));
 	if (nb_ants == 0)
 	{
-		ft_printf("probleme sur les fourmis\n");
 		free(line);
-		return (0);
+		return (ft_printf("probleme sur les fourmis\n"));
 	}
 	line = get_rooms(line, &t);
 	if (line == NULL)

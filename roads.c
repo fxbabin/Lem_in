@@ -6,22 +6,12 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:00:24 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 19:48:24 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 20:47:27 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <stdio.h>
-
-void	ft_print(int *tab, int n)
-{
-	int	i = 0;
-	while (i < n)
-	{
-		dprintf(1, "tab[%d] = %d\n", i, tab[i]);
-		i++;
-	}
-}
 
 int		somme_sizes(int *roads_size, int nb_roads, int i, int n)
 {
@@ -92,7 +82,7 @@ int		find_cycles(t_list **paths, int n)
 	int			ret;
 
 	nb_roads = ft_lstsize(*paths);
-	if(!(roads_size = malloc(sizeof(int) * nb_roads)))
+	if (!(roads_size = malloc(sizeof(int) * nb_roads)))
 		return (0);
 	tmp = *paths;
 	i = 0;

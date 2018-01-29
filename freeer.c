@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:44:18 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 20:04:35 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 21:07:15 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ void	freenode(t_room *t)
 	free(t);
 }
 
-void	freenode2(t_room *t)
-{
-	free((void*)t->name);
-//	ft_lstdel(&(t->pipes), ft_eldel);
-	free((void*)t->pipes);
-	free(t);
-}
-
 void	ft_lstnfree(t_list **list)
 {
 	t_list		*tmp;
@@ -48,23 +40,6 @@ void	ft_lstnfree(t_list **list)
 	{
 		if ((*list)->content)
 			freenode((*list)->content);
-		tmp = (*list)->next;
-		free(*list);
-		*list = tmp;
-	}
-	free(*list);
-}
-
-void	ft_lstnfree2(t_list **list)
-{
-	t_list		*tmp;
-
-	if (!list || !*list)
-		return ;
-	while ((*list))
-	{
-		if ((*list)->content)
-			freenode2((*list)->content);
 		tmp = (*list)->next;
 		free(*list);
 		*list = tmp;

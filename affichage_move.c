@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launchers.c                                        :+:      :+:    :+:   */
+/*   affichage_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 11:34:25 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 21:12:29 by arobion          ###   ########.fr       */
+/*   Created: 2018/01/29 20:57:12 by arobion           #+#    #+#             */
+/*   Updated: 2018/01/29 21:04:32 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ft_launch_pushback(t_room *crawler, t_room *room)
+void	move_ants_in_one_path(int *tab, int size)
 {
-	ft_lstpushback(&(crawler->pipes), room, 0);
+	int		i;
+
+	i = size - 1;
+	while (i > 0)
+	{
+		tab[i] = tab[i - 1];
+		i--;
+	}
+	tab[0] = 0;
 }
 
-int		ft_launch_cmp(t_room *crawler, const char *current_room)
+void	move_all_ants(int **tabs, t_list **paths)
 {
-	return (ft_strcmp(crawler->name, current_room));
-}
+	int		i;
+	t_list	*tmp;
 
-void	print_and_norme(char *line, int *b)
-{
-	ft_printf("%s\n", line);
-	*b = 0;
+	tmp = *paths;
+	i = 0;
+	while (i < ft_lstsize(*paths))
+	{
+		move_ants_in_one_path(tabs[i], ft_lstsize(tmp->content) - 1);
+		i++;
+		tmp = tmp->next;
+	}
 }

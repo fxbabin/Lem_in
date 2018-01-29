@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 19:41:11 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/29 21:12:17 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int					get_pipes(char *line, t_list **t);
 int					ft_add_pipes_to_room(t_list **t, char *name1, char *name2);
 int					ft_are_rooms_exists(char *line, int i, t_list **t);
 int					ft_verif_unicity_of_pipe(t_room *room, char *name);
+int					ft_verif_pipe_format(char *line);
 
 int					ft_verif_line_is_comm(char *line);
 long long			ft_atoi_check(const char *str);
@@ -67,6 +68,11 @@ int					solver(t_list **t, int nb_ants);
 int					find_cycles(t_list **list, int nb_ants);
 
 void				affichage(t_list **paths, int *nb_ants, int _nb_cycles);
+void				print_at_this_cycle(int **tabs, char ***names, t_list **paths);
+void				move_all_ants(int **tabs, t_list **paths);	
+void				place_each_new_ants(int **tab, t_list **paths, int *nb_ants, int n_c);
+char				***mall_names(t_list **paths);
+void				print_and_norme(char *line, int *b);
 /*
 ** ------------------------------- FREE FUNCTIONS -----------------------------
 */
