@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/30 14:00:08 by arobion          ###   ########.fr        #
+#    Updated: 2018/01/30 15:25:54 by arobion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ _SRCS			=	lem_in.c get_rooms.c get_rooms2.c get_rooms3.c \
 					launchers.c freeer.c \
 					ft_displays.c atoi_check.c solver.c roads.c \
 					affichage.c affichage_cycle.c affichage_move.c \
-					affichage_first_ants.c affichage2.c
+					affichage_first_ants.c affichage2.c lem_in2.c
 
 _LIBFT			=	libft.a
 HEADER_DIR		=	includes

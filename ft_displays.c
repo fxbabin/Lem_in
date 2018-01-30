@@ -6,13 +6,13 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:50:37 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 20:47:17 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:30:36 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		ft_lstroomdump(t_list **list)
+void	ft_lstroomdump(t_list **list)
 {
 	t_list		*l;
 
@@ -69,6 +69,7 @@ void	ft_lstndump(t_list **list)
 void	ft_pathdump(t_list **list)
 {
 	t_list *l;
+
 	if (!(list))
 	{
 		ft_putstr("(null)\n");
@@ -86,4 +87,3 @@ void	ft_pathdump(t_list **list)
 	ft_putstr("NULL\n");
 	*list = l;
 }
-

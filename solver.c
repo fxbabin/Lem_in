@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/30 13:54:56 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:29:48 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void			ft_lstremovefirst(t_list **begin_list, void *content_ref,
 	}
 }
 
-void			ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t size)
+void			ft_lstpushlist(t_list **begin_list, t_list **add,\
+		int (*cmp)(), size_t size)
 {
 	t_list		*tmp;
 
@@ -122,7 +123,8 @@ void			get_children(t_list **t, t_list **visited, t_room *room)
 	tmp = room->pipes;
 	while (tmp)
 	{
-		if (!ft_lstin(visited, tmp->content, ft_memcmp, sizeof(t_room)) && (int)((t_room*)tmp->content)->boo == 0)
+		if (!ft_lstin(visited, tmp->content, ft_memcmp, sizeof(t_room))\
+				&& (int)((t_room*)tmp->content)->boo == 0)
 			ft_lstpushback(t, (t_room*)tmp->content, 0);
 		tmp = tmp->next;
 	}
@@ -166,7 +168,8 @@ t_list			*find_path(t_list **visited, t_list *end, t_list *start)
 	tmpv = *visited;
 	while (tmpv && ft_memcmp(curr, start, sizeof(t_list*)))
 	{
-		if (ft_lstin(&((t_room*)curr->content)->pipes, tmpv->content, ft_memcmp, sizeof(t_room)))
+		if (ft_lstin(&((t_room*)curr->content)->pipes,\
+					tmpv->content, ft_memcmp, sizeof(t_room)))
 		{
 			ft_lstpushfront(&ret, tmpv->content, 0);
 			curr = tmpv;
@@ -195,7 +198,34 @@ void			ft_launch_dump(t_list *list)
 	ft_lstndump(&list);
 }
 
-int				solver(t_list **t, int nb_ants)
+void			print_paths(t_list **paths)
+{
+	int		i;
+	t_list	*tmp;
+	t_list	*tmp2;
+	int		j;
+
+	i = -1;
+	tmp = *paths;
+	ft_printf("-------------------------------------\n\n");
+	while (++i < ft_lstsize(*paths))
+	{
+		tmp2 = tmp->content;
+		j = -1;
+		ft_printf("chemin %d:\n", i + 1);
+		while (++j < ft_lstsize(tmp->content) - 1)
+		{
+			ft_printf("%s ==> ", ((t_room*)tmp2->content)->name);
+			tmp2 = tmp2->next;
+		}
+		ft_printf("%s", ((t_room*)tmp2->content)->name);
+		ft_printf("\n");
+		tmp = tmp->next;
+	}
+	ft_printf("\n-------------------------------------\n\n");
+}
+
+int				solver(t_list **t, int nb_ants, int option)
 {
 	t_list		*ntv;
 	t_list		*visited;
@@ -225,6 +255,8 @@ int				solver(t_list **t, int nb_ants)
 	}
 	if (i == 0)
 		return (0);
-	/*ft_printf("nb_cycles = %d\n", */find_cycles(&paths_list, nb_ants)/*)*/;
+	if (option == 1)
+		print_paths(&paths_list);
+	find_cycles(&paths_list, nb_ants);
 	return (1);
 }

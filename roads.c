@@ -6,24 +6,11 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:00:24 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 22:03:31 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:31:40 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <stdio.h>
-
-void	ft_print(int *tab, int nb)
-{
-	int		i;
-
-	i = 0;
-	while (i < nb)
-	{
-		ft_printf("tab[%d] = %d\n", i, tab[i]);
-		i++;
-	}
-}
 
 int		somme_sizes(int *roads_size, int nb_roads, int i, int n)
 {
