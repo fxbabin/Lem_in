@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/30 15:27:37 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 15:56:46 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ t_room				*init_room(const char *str, int x, int y);
 
 void				ft_lstndump(t_list **list);
 
+int					new_bfs(t_list **ntv, t_list **visited, t_room *dest);
 int					solver(t_list **t, int nb_ants, int option);
 int					find_cycles(t_list **list, int nb_ants);
+int					get_start_end(t_list **list, t_list **start, t_list **end);
+int					ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)(), size_t size);
+void				ft_lstremovefirst(t_list **begin_list, void *content_ref, int (*cmp)(), size_t size);
+void				ft_lstpushlist(t_list **begin_list, t_list **add, int (*cmp)(), size_t size);
 
 void				affichage(t_list **paths, int *nb_ants, int _nb_cycles);
 void				print_at_this_cycle(int **tabs, char ***names, t_list **paths);
