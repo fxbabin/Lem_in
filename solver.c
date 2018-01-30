@@ -6,11 +6,19 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 21:37:27 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 13:54:56 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int				check_s_e(int s, int e)
+{
+	if (s == 1 && e == 1)
+		return (1);
+	else
+		return (0);
+}
 
 int				get_start_end(t_list **list, t_list **start, t_list **end)
 {
@@ -42,7 +50,7 @@ int				get_start_end(t_list **list, t_list **start, t_list **end)
 		*list = (*list)->next;
 	}
 	*list = l;
-	return (1);
+	return (check_s_e(s, e));
 }
 
 static int		ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)(),
@@ -195,7 +203,10 @@ int				solver(t_list **t, int nb_ants)
 	t_list		*end;
 	t_list		*path;
 	t_list		*paths_list;
+	int			i;
 
+	ft_printf("\n");
+	i = 0;
 	ntv = NULL;
 	visited = NULL;
 	paths_list = NULL;
@@ -210,7 +221,10 @@ int				solver(t_list **t, int nb_ants)
 		ntv = NULL;
 		visited = NULL;
 		ft_lstpushback(&ntv, start->content, 0);
+		i++;
 	}
+	if (i == 0)
+		return (0);
 	/*ft_printf("nb_cycles = %d\n", */find_cycles(&paths_list, nb_ants)/*)*/;
 	return (1);
 }

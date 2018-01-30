@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 21:08:39 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/29 21:10:29 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 13:44:17 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ int		ft_verif_unicity_of_pipe(t_room *crawler, char *name)
 	tmp = crawler->pipes;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->content, name) == 0)
+		if (ft_strcmp(((t_room*)tmp->content)->name, name) == 0)
 		{
-			ft_printf("%s\n", name);
 			return (0);
 		}
 		tmp = tmp->next;

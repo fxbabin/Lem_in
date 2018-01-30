@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/29 20:52:46 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/30 13:46:11 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char		*get_ants(int *ants)
 	return (NULL);
 }
 
-void			ft_lsttremoveif(t_list **begin_list, void *content_ref,
+void		ft_lsttremoveif(t_list **begin_list, void *content_ref,
 		int (*cmp)())
 {
 	t_list		*tmp;
@@ -115,6 +115,42 @@ int			ft_lstin(t_list **begin_list, void *data_ref, int (*cmp)())
 	return (0);
 }
 
+int			main3(int nb_ants, t_list *t)
+{
+	if (!solver(&t, nb_ants))
+	{
+		ft_lstnfree(&t);
+		return (write(1, "Error\n", 6));
+	}
+	ft_lstnfree(&t);
+	return (1);
+}
+
+int			main2(char *line, int nb_ants, t_list *t)
+{
+	if (line == NULL)
+	{
+		if (!solver(&t, nb_ants))
+		{
+			ft_lstnfree(&t);
+			return (write(1, "Error\n", 6));
+		}
+		ft_lstnfree(&t);
+		return (0);
+	}
+	if (!(get_pipes(line, &t)))
+	{
+		if (!solver(&t, nb_ants))
+		{
+			ft_lstnfree(&t);
+			return (write(1, "Error\n", 6));
+		}
+		ft_lstnfree(&t);
+		return (0);
+	}
+	return (main3(nb_ants, t));
+}
+
 int			main(void)
 {
 	t_list	*t;
@@ -124,33 +160,12 @@ int			main(void)
 	t = NULL;
 	nb_ants = 0;
 	if (!(line = get_ants(&nb_ants)))
-		return (ft_printf("probleme sur les fourmis\n"));
+		return (ft_printf("Error\n"));
 	if (nb_ants == 0)
 	{
 		free(line);
-		return (ft_printf("probleme sur les fourmis\n"));
+		return (ft_printf("Error\n"));
 	}
 	line = get_rooms(line, &t);
-	if (line == NULL)
-	{
-		ft_lstndump(&t);
-		ft_printf("start_programme\n");
-		ft_lstnfree(&t);
-		return (0);
-	}
-	if (!(get_pipes(line, &t)))
-	{
-		ft_lstndump(&t);
-		ft_printf("start programme 2\n");
-		ft_lstnfree(&t);
-		return (0);
-	}
-	ft_printf("\n");
-	if (!solver(&t, nb_ants))
-	{
-		ft_printf("double start or double end\n");
-		return (0);
-	}
-	ft_lstnfree(&t);
-	return (0);
+	return (main2(line, nb_ants, t));
 }
