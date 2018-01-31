@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 13:20:48 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 14:18:05 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void			print_paths(t_list **paths)
 	ft_printf("\n-------------------------------------\n\n");
 }
 
-int				launch_bfs(t_list *visited, t_list *start,\
-		t_list *end, t_list *paths_list)
+int				launch_bfs(t_list **visited, t_list *start,\
+		t_list *end, t_list **paths_list)
 {
 	t_list	*ntv;
 	int		i;
@@ -91,14 +91,14 @@ int				launch_bfs(t_list *visited, t_list *start,\
 	i = 0;
 	ntv = NULL;
 	ft_lstpushback(&ntv, start->content, 0);
-	while (new_bfs(&ntv, &visited, end->content))
+	while (new_bfs(&ntv, visited, end->content))
 	{
-		ft_lstpushback(&paths_list, find_path(&visited, end, start), 0);
-		ft_change_boo(paths_list);
+		ft_lstpushback(paths_list, find_path(visited, end, start), 0);
+		ft_change_boo(*paths_list);
 		free_listss(ntv);
-		free_listss(visited);
+		free_listss(*visited);
 		ntv = NULL;
-		visited = NULL;
+		*visited = NULL;
 		ft_lstpushback(&ntv, start->content, 0);
 		i++;
 	}
@@ -118,16 +118,12 @@ int				solver(t_list **t, int nb_ants, int option)
 	paths_list = NULL;
 	if (!get_start_end(t, &start, &end))
 		return (0);
-	i = launch_bfs(visited, start, end, paths_list);
+	i = launch_bfs(&visited, start, end, &paths_list);
 	if (i == 0)
-	{
-		//free_listss(visited);
 		return (0);
-	}
 	if (option == 1)
 		print_paths(&paths_list);
 	find_cycles(&paths_list, nb_ants);
 	freeit(paths_list);
-	free_listss(visited);
 	return (1);
 }
