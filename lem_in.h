@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 12:36:13 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 14:56:15 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void				freetabs(int **tabs, t_list **paths);
 void				freenode(t_room *t);
 void				free_listss(t_list *paths);
 void				freeit(t_list *path);
+void				free_this(t_list *path);
 
 #endif

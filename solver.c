@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 14:18:05 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 16:08:24 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int				launch_bfs(t_list **visited, t_list *start,\
 		ft_lstpushback(&ntv, start->content, 0);
 		i++;
 	}
+	if (*visited)
+		free_listss(*visited);
 	return (i);
 }
 

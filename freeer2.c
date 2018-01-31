@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 12:33:23 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/31 12:34:54 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 16:03:37 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,20 @@ void			freeit(t_list *path)
 	}
 	free_listss(path->content);
 	free(path);
+}
+
+void			free_this(t_list *l)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+
+	tmp = l;
+	while (tmp->next)
+	{
+		tmp2 = tmp->next;
+		free(l);
+		l = tmp2;
+		tmp = tmp2;
+	}
+	free(l);
 }
