@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:34:25 by arobion           #+#    #+#             */
-/*   Updated: 2018/01/31 12:35:39 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 13:07:00 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_and_norme(char *line, int *b)
 	*b = 0;
 }
 
-void			ft_launch_dump(t_list *list)
+void	ft_launch_dump(t_list *list)
 {
 	ft_lstndump(&list);
 }
