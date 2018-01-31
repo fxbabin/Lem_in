@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/31 21:05:30 by fbabin           ###   ########.fr        #
+#    Updated: 2018/02/01 00:24:48 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ $(LIBFT):
 clean:
 		@make fclean -C $(LIB_DIR)
 		@make clean -C $(MLX_DIR)
-		@/bin/rm -f $(LOBJS) $(VOBJS)
+		@/bin/rm -f $(L_OBJS) $(V_OBJS)
 		@echo "$(LEM_IN) clean : $(_GREEN)Done$(_END)"
 		@echo "$(LEM_INV) clean : $(_GREEN)Done$(_END)"
 

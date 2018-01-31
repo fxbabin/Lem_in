@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 17:08:45 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 19:03:04 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 00:15:48 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				deal_key(int key, void *param)
 	if (key == 53)
 	{
 		ft_printf("EXIT VISUALISOR\n");
-		exit (0);
+		exit(0);
 	}
 	else if (key == 124)
 		go_forward(env);

@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:20:36 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 20:54:37 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 00:14:12 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		draw_l(t_env *env, t_room *r)
 	{
 		pipe.x = (int)((t_room*)l->content)->x;
 		pipe.y = (int)((t_room*)l->content)->y;
-		bresenham(env, r->x, r->y, ((t_room*)l->content)->x, ((t_room*)l->content)->y);
+		bresenham(env, &room, &pipe);
 		l = l->next;
 	}
 }
@@ -71,18 +71,18 @@ void		display_dots2(t_env *env, t_list **t, int *x)
 		*x = ((t_room*)l->content)->x;
 		y = ((t_room*)l->content)->y;
 		if (l->content_size == 0)
-		{
 			draw_square(env, *x, y, 0xFFFFFF);
-		}
 		else if (l->content_size == 1)
 		{
 			draw_square(env, *x, y, 0x354BF0);
-			mlx_string_put(env->mlx_ptr, env->win_ptr, *x - 5, y - 10, 0xFFFFFF, "S");
+			mlx_string_put(env->mlx_ptr, env->win_ptr, *x - 5, y - 10,
+				0xFFFFFF, "S");
 		}
 		else if (l->content_size == 2)
 		{
 			draw_square(env, *x, y, 0x2BC142);
-			mlx_string_put(env->mlx_ptr, env->win_ptr, *x - 5, y - 10, 0xFFFFFF, "E");
+			mlx_string_put(env->mlx_ptr, env->win_ptr, *x - 5, y - 10,
+				0xFFFFFF, "E");
 		}
 		l = l->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 20:49:27 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 00:26:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ typedef struct		s_bres
 	float			delta;
 	int				x;
 	int				y;
+	int				x1;
+	int				x2;
+	int				y1;
+	int				y2;
 }					t_bres;
 
 typedef struct		s_dot
@@ -83,6 +87,7 @@ typedef struct		s_dot
 ** ------------------------------- PARSE FUNCTIONS ----------------------------
 */
 
+int					somme_sizes(int *roads_size, int nb_roads, int i, int n);
 char				*get_rooms(char *line, t_list **t);
 char				**ft_verif_room_format(char *line);
 int					ft_verif_room_validity(char **room);
@@ -107,6 +112,7 @@ void				ft_launch_dump(t_list *list);
 int					new_bfs(t_list **ntv, t_list **visited, t_room *dest);
 int					solver(t_list **t, int nb_ants, int option);
 int					find_cycles(t_list **list, int nb_ants);
+int					find_cycles2(t_list **paths, int n);
 int					get_start_end(t_list **list, t_list **start, t_list **end);
 int					ft_lstin(t_list **begin_list, void *data_ref,\
 		int (*cmp)(), size_t size);
@@ -123,6 +129,8 @@ void				place_each_new_ants(int **tab, t_list **paths,\
 		int *nb_ants, int n_c);
 char				***mall_names(t_list **paths);
 void				print_and_norme(char *line, int *b);
+void				egalize_ants2(int *nb_ants, int nb_roads, int n);
+void				egalize_ants(int *nb_ants, int nb_roads, int n);
 
 /*
 ** ------------------------------- VISU FUNCTIONS -----------------------------
@@ -132,7 +140,7 @@ t_list				*get_room_states(void);
 void				ft_int2dumpx(int **array, int x);
 t_env				*generate_map(t_list **t);
 int					deal_key(int key, void *param);
-void				bresenham(t_env *env, int x1, int y1, int x2, int y2);
+void				bresenham(t_env *env, t_dot *d1, t_dot *d2);
 t_room				*find_room_by_name(t_list **t, char *str);
 void				convert_coords(t_env *env, t_list **t);
 void				draw_square(t_env *env, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 16:53:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 20:43:48 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 00:15:03 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_int2dumpx(int **array, int x)
 
 t_room		*find_room_by_name(t_list **t, char *str)
 {
-	t_list          *l;
+	t_list		*l;
 
 	l = *t;
 	while (l)
@@ -59,9 +59,9 @@ void		convert_coords(t_env *env, t_list **t)
 	}
 }
 
-void    set_start_end(t_list **t)
+void		set_start_end(t_list **t)
 {
-	t_list          *l;
+	t_list		*l;
 
 	l = *t;
 	while (l)
