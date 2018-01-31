@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 16:08:24 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:34:12 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int				launch_bfs(t_list **visited, t_list *start,\
 {
 	t_list	*ntv;
 	int		i;
+	int		j;
 
 	i = 0;
 	ntv = NULL;
@@ -95,8 +96,11 @@ int				launch_bfs(t_list **visited, t_list *start,\
 	{
 		ft_lstpushback(paths_list, find_path(visited, end, start), 0);
 		ft_change_boo(*paths_list);
+		j = ft_lstsize(*visited);
 		free_listss(ntv);
 		free_listss(*visited);
+		if (j == 1)
+			return (-1);
 		ntv = NULL;
 		*visited = NULL;
 		ft_lstpushback(&ntv, start->content, 0);
@@ -125,7 +129,10 @@ int				solver(t_list **t, int nb_ants, int option)
 		return (0);
 	if (option == 1)
 		print_paths(&paths_list);
-	find_cycles(&paths_list, nb_ants);
+	if (i == -1)
+		find_cycles2(&paths_list, nb_ants);
+	else
+		find_cycles(&paths_list, nb_ants);
 	freeit(paths_list);
 	return (1);
 }

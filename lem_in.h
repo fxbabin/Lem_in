@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 14:56:15 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:31:31 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void				ft_launch_dump(t_list *list);
 int					new_bfs(t_list **ntv, t_list **visited, t_room *dest);
 int					solver(t_list **t, int nb_ants, int option);
 int					find_cycles(t_list **list, int nb_ants);
+int					find_cycles2(t_list **list, int nb_ants);
+void				egalize_ants(int *nb_ants, int nb_roads, int n);
+void				egalize_ants2(int *nb_ants, int nb_roads, int n);
+int					somme_sizes(int *roads_size, int nb_roads, int i, int n);
 int					get_start_end(t_list **list, t_list **start, t_list **end);
 int					ft_lstin(t_list **begin_list, void *data_ref,\
 		int (*cmp)(), size_t size);
