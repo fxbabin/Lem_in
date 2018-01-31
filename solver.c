@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 12:21:02 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 12:30:48 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,10 @@ int				solver(t_list **t, int nb_ants, int option)
 		i++;
 	}
 	if (i == 0)
+	{
+		free_listss(visited);
 		return (0);
+	}
 	if (option == 1)
 		print_paths(&paths_list);
 	find_cycles(&paths_list, nb_ants);
