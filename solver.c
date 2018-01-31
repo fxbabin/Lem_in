@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:18:53 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 12:41:40 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 13:20:48 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int				solver(t_list **t, int nb_ants, int option)
 	i = launch_bfs(visited, start, end, paths_list);
 	if (i == 0)
 	{
-		free_listss(visited);
+		//free_listss(visited);
 		return (0);
 	}
 	if (option == 1)
