@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:05:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 11:54:31 by arobion          ###   ########.fr       */
+/*   Updated: 2018/01/31 12:36:13 by arobion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				ft_launch_pushback(t_room *crawler, t_room *room);
 t_room				*init_room(const char *str, int x, int y);
 
 void				ft_lstndump(t_list **list);
+void				ft_launch_dump(t_list *list);
 
 int					new_bfs(t_list **ntv, t_list **visited, t_room *dest);
 int					solver(t_list **t, int nb_ants, int option);
@@ -94,5 +95,7 @@ void				freechar2(char **tab);
 void				freenames(char ***names, t_list **paths);
 void				freetabs(int **tabs, t_list **paths);
 void				freenode(t_room *t);
+void				free_listss(t_list *paths);
+void				freeit(t_list *path);
 
 #endif
