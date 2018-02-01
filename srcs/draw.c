@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:20:36 by fbabin            #+#    #+#             */
-/*   Updated: 2018/02/01 00:14:12 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 13:41:42 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		draw_square(t_env *env, int x, int y, int color)
 	max = ((env->screen_x - (2 * env->b_x)) / env->x) / 3;
 	if ((((env->screen_y - (2 * env->b_y)) / env->y) / 3) > max)
 		max = ((env->screen_y - (2 * env->b_y)) / env->y) / 3;
-	if (max > 30)
-		max = 30;
+	max = (max > 30) ? 30 : max;
+	max = (max < 1) ? 1 : max;
 	l_x = x + max;
 	l_y = y + max;
 	x -= max;
@@ -96,7 +96,6 @@ void		display_dots(t_env *env, t_list **t)
 
 	x = 0;
 	l = *t;
-	ft_lstndump(t);
 	while (l)
 	{
 		draw_l(env, l->content);
@@ -136,6 +135,6 @@ void		disp_steps(t_env *env, t_list **rs, t_list **main, int step)
 			mlx_string_put(env->mlx_ptr, env->win_ptr, d.x - 5, d.y - 10,
 					0x000000, tmp[0] + 1);
 		}
-		ft_free2((void**)tmp);
+		freechar2(tmp);
 	}
 }

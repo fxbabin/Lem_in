@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 13:40:43 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 20:51:28 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 14:06:54 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ int			main2(char *line, int nb_ants, t_list *t)
 	(void)nb_ants;
 	if (line == NULL)
 	{
-		ft_lstnfree(&t);
 		return (0);
 	}
-	if (!(get_pipes(line, &t)))
+	else if (!(get_pipes(line, &t)))
 	{
-		if (!line[0])
-			return (1);
-		ft_lstnfree(&t);
 		return (0);
 	}
 	return (1);
@@ -75,7 +71,6 @@ int			main(void)
 	t_list		*t;
 	char		*line;
 	int			nb_ants;
-	int			ret;
 
 	t = NULL;
 	nb_ants = 0;
@@ -87,12 +82,8 @@ int			main(void)
 		return (ft_printf("ERROR\n"));
 	}
 	line = get_rooms(line, &t);
-	ret = main2(line, nb_ants, t);
-	if (!ret)
-		return (0);
+	main2(line, nb_ants, t);
 	ft_lstndump(&t);
 	main3(t);
-	if (ret)
-		ft_lstnfree(&t);
 	return (0);
 }

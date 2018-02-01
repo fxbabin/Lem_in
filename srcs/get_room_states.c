@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 16:38:25 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 16:40:37 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 14:06:00 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_list			*get_room_states(void)
 	all = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
+		if (ft_strcmp(line, "ERROR") == 0)
+			exit(0);
 		if (!line[0])
 			ft_printf("LIGNE VIDE\n");
 		else

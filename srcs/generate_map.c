@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 16:47:19 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 16:48:33 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/02/01 13:34:17 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ t_env		*generate_map(t_list **t)
 	env->x = max_x;
 	env->y = max_y;
 	env->coords = map_gen(t, max_x, max_y);
-	ft_int2dumpx(env->coords, max_x);
 	return (env);
 }
