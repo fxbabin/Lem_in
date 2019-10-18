@@ -20,4 +20,5 @@ In order to see how each ant moves we did a visualizer. We can see the ant numbe
 <p align="center">
     <img src="imgs/visu.png" alt="drawing" width="600" />
 <p/>
+
 ### Final mark (125/125)
