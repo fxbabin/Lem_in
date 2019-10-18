@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 22:21:23 by fbabin            #+#    #+#             */
-/*   Updated: 2018/01/31 12:08:41 by arobion          ###   ########.fr       */
+/*   Updated: 2019/10/18 16:01:54 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		earn_opt(int argc, char **argv, int *option)
 	*option = 0;
 	if (argc == 2)
 	{
-		if (strcmp(argv[1], "-p") == 0)
+		if (ft_strcmp(argv[1], "-p") == 0)
 			*option = 1;
 	}
 }

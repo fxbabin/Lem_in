@@ -6,14 +6,14 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 17:49:24 by fbabin            #+#    #+#              #
-#    Updated: 2018/01/27 17:12:20 by fbabin           ###   ########.fr        #
+#    Updated: 2019/10/18 15:57:41 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= libft.a
+NAME			=	libft.a
 
-CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra
+CC				=	gcc
+CFLAGS			=	-Wall -Werror -Wextra
 
 _LIBS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 					ft_memmove.c ft_memchr.c ft_memcmp.c ft_strlen.c \

@@ -6,15 +6,15 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 21:15:36 by fbabin            #+#    #+#              #
-#    Updated: 2018/02/01 14:00:09 by fbabin           ###   ########.fr        #
+#    Updated: 2019/10/18 15:57:16 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LEM_IN			= lem-in
-LEM_INV			= lem-in-visu
+LEM_IN			=	lem-in
+LEM_INV			=	lem-in-visu
 
-CC				= gcc -g3
-CFLAGS			= -Wall -Werror -Wextra
+CC				=	gcc
+CFLAGS			=	-Wall -Werror -Wextra
 
 _SRCS			=	get_rooms.c get_rooms2.c get_rooms3.c \
 					get_pipes.c get_pipes2.c get_pipes3.c \
