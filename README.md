@@ -10,7 +10,7 @@ The input map is formated as below.
 
 The output must fisrt show the map then the position of each ant at a time.
 
-<img src="imgs/result.png" alt="drawing" width="800" />
+<img src="imgs/result.png" alt="drawing" width="700" />
 
 
 ## Visualizer
@@ -18,6 +18,6 @@ The output must fisrt show the map then the position of each ant at a time.
 In order to see how each ant moves we did a visualizer. We can see the ant number and how they move through different cycles.
 
 <p align="center">
-    <img src="imgs/visu.png" alt="drawing" width="800" />
+    <img src="imgs/visu.png" alt="drawing" width="600" />
 <p/>
 ### Final mark (125/125)
